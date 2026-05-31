@@ -1,0 +1,13 @@
+block_newline_gaps = "Never"
+call_parentheses = "Always"
+collapse_simple_statement = "Never"
+column_width = 120
+indent_type = "Spaces"
+indent_width = 4
+line_endings = "Unix"
+quote_style = "AutoPreferDouble"
+space_after_function_names = "Never"
+syntax = "Lua54" # TODO: update to Lua55 once https://github.com/Kampfkarren/full-moon/pull/356 is merged
+
+[sort_requires]
+enabled = true
