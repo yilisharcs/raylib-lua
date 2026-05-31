@@ -1,0 +1,8 @@
+.{
+    .name = .raylib_lua,
+    .version = "0.0.0",
+    .fingerprint = 0xd3708f6c23a66175,
+    .minimum_zig_version = "0.17.0",
+    .paths = .{""},
+    .dependencies = .{},
+}

@@ -1,4 +1,3 @@
 examples/*.lua linguist-language=Lua
 *.h linguist-language=C
 *.c linguist-language=C
-
