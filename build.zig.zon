@@ -4,5 +4,10 @@
     .fingerprint = 0xd3708f6c23a66175,
     .minimum_zig_version = "0.17.0",
     .paths = .{""},
-    .dependencies = .{},
+    .dependencies = .{
+        .madoshi = .{
+            .url = "git+https://codeberg.org/yilisharcs/madoshi#129329775167d9ddfd43f5a91d6a38808ff44ea1",
+            .hash = "madoshi-0.0.1+5.5.1-bops68ffDgDWUGawqFOpUuhCCRGY5MYTpLlKmksuvBVw",
+        },
+    },
 }

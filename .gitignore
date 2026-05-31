@@ -7,9 +7,3 @@ result
 zig-out/
 zig-pkg/*
 *.o
-
-# Avoid ignoring release execs
-!release/win32/rlua.exe
-!src/external/lua/lib/liblua53.a
-!src/external/lua/lib/liblua53dll.a
-!src/external/lua/lib/lua53.dll
