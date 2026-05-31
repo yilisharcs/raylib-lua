@@ -1,26 +1,30 @@
 /*******************************************************************************************
 *
-*   rLuaLauncher v1.1 - raylib Lua Launcher
+*   rlualauncher v2.0 - raylib Lua Launcher
 *
 *   DEPENDENCIES:
 *
-*   raylib 2.0 - This program uses latest raylib version (www.raylib.com)
-*   Lua 5.3.3  - http://luabinaries.sourceforge.net/download.html
+*   raylib 6.0 - This program uses latest raylib version (www.raylib.com)
+*   Lua 5.5    - https://luabinaries.sourceforge.net/download.html
 *
-*   COMPILATION (GCC):
+*   COMPILATION:
 *
-*   gcc -o rlualauncher.exe rlualauncher.c -s rlualauncher.rc.o -I. -Iexternal/lua/include \
-*       -Lexternal/lua/lib -lraylib -lopengl32 -lgdi32 -llua53 -std=c99 -Wall -Wl,--subsystem,windows
+*       ./build.lua                             # X11 (default)
+*       CFLAGS="-D_GLFW_WAYLAND" ./build.lua    # Wayland
 *
 *   USAGE:
 *
-*   Just launch your raylib .lua file from command line:    rll.exe core_basic_window.lua
-*   or drag&drop your .lua file over rll.exe
+*   Just launch your raylib .lua file from the command line:
 *
+*       ./build/rLuaLauncher core_basic_window.lua
+*
+*   NOTE: Windows is not currently supported.
+*   TODO: The original had drag-and-drop support.
 *
 *   LICENSE: zlib/libpng
 *
 *   Copyright (c) 2016-2018 Ramon Santamaria (@raysan5)
+*   Copyright (c) 2026 yilisharcs
 *
 *   This software is provided "as-is", without any express or implied warranty. In no event
 *   will the authors be held liable for any damages arising from the use of this software.
@@ -49,106 +53,27 @@
 //------------------------------------------------------------------------------------
 int main(int argc, char *argv[])
 {
-    if (argc > 1)
+    const char *entryLua = (argc > 1) ? argv[1] : "main.lua";
+
+    if (argc > 2)
     {
-        // TODO: Support additional arguments for lua file execution
-        
-        if (IsFileExtension(argv[1], ".lua"))
-        {
-            rLuaInitDevice();            // Initialize lua device
-            rLuaExecuteFile(argv[1]);    // Execute lua program (argument file)
-            rLuaCloseDevice();           // Close Lua device and free resources
-        }
-    }
-    else
-    {
-        bool launcherShouldClose = false;
-        
-        while (!launcherShouldClose)
-        {
-            // Initialization
-            //--------------------------------------------------------------------------------------
-            int screenWidth = 800;
-            int screenHeight = 450;
-
-            InitWindow(screenWidth, screenHeight, "rLL - raylib Lua Launcher");
-            
-            // NOTE: Drag and drop support only available for desktop platforms: Windows, Linux, OSX
-            int count = 0;
-            char **droppedFiles;
-            char luaFileToLoad[256];
-
-            bool runLuaFile = false;
-            
-            SetTargetFPS(60);
-            //--------------------------------------------------------------------------------------
-            
-            while (!WindowShouldClose() && !runLuaFile)
-            {
-                // Update
-                //----------------------------------------------------------------------------------
-
-                // Load a dropped Lua file dynamically
-                if (IsFileDropped())
-                {
-                    droppedFiles = GetDroppedFiles(&count);
-                    
-                    if (count == 1) // Only support one Lua file dropped
-                    {
-                        if (IsFileExtension(droppedFiles[0], ".lua"))
-                        {
-                            runLuaFile = true;
-                            strcpy(luaFileToLoad, droppedFiles[0]);
-                        }
-                        else TraceLog(WARNING, "[%s] Fileformat not supported", droppedFiles[0]);
-                    }
-                    
-                    ClearDroppedFiles();
-                }
-                //----------------------------------------------------------------------------------
-            
-                // Draw
-                //----------------------------------------------------------------------------------
-                BeginDrawing();
-                
-                    ClearBackground(RAYWHITE);
-                    
-                    DrawText("rLL - raylib Lua launcher", 10, 10, 20, LIGHTGRAY);
-                    DrawText("rLL v1.1", 10, 430, 10, GRAY);
-                    DrawText("< drag & drop raylib Lua file here >", 230, 180, 20, GRAY);
-                
-                EndDrawing();
-                //----------------------------------------------------------------------------------
-            }
-            
-            // De-Initialization
-            //--------------------------------------------------------------------------------------
-            ClearDroppedFiles();                // Clear internal buffers
-            
-            CloseWindow();                      // Close window and OpenGL context
-            //--------------------------------------------------------------------------------------
-            
-            launcherShouldClose = true;         // Close launcher if no Lua file loaded
-            
-            if (runLuaFile)
-            {
-                TraceLog(INFO, "------------------------------------");
-                TraceLog(INFO, "Loading Lua file: %s", luaFileToLoad);
-                TraceLog(INFO, "------------------------------------");
-                
-                rLuaInitDevice();                // Initialize lua device
-                ChangeDirectory(GetDirectoryPath(luaFileToLoad));
-                rLuaExecuteFile(luaFileToLoad);
-                rLuaCloseDevice();               // Close Lua device and free resources
-                
-                launcherShouldClose = false;    // Return to launcher to load another Lua file
-                
-                TraceLog(INFO, "------------------------------------");
-                TraceLog(INFO, "Closing Lua file...");
-                TraceLog(INFO, "------------------------------------");
-            }
-        }
+        TraceLog(LOG_WARNING, "Too many arguments provided");
+        TraceLog(LOG_INFO, "Usage: %s [script.lua] (defaults to main.lua)", argv[0]);
+        return 1;
     }
 
+    lua_State *L = rlua_open();
+    if (L == NULL) {
+        TraceLog(LOG_ERROR, "LUA: Failed to initialize Lua state");
+        return 1;
+    }
+
+    if (luaL_dofile(L, entryLua) != LUA_OK) {
+        TraceLog(LOG_ERROR, "LUA: %s", lua_tostring(L, -1));
+        rlua_close(L);
+        return 1;
+    }
+
+    rlua_close(L);
     return 0;
 }
