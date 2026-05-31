@@ -56,9 +56,9 @@ while not WindowShouldClose() do    -- Detect window close button or ESC key
             elseif (currentGesture == Gestures.PINCH_IN) then gestureStrings[gesturesCount] = "GESTURE PINCH IN"
             elseif (currentGesture == Gestures.PINCH_OUT) then gestureStrings[gesturesCount] = "GESTURE PINCH OUT"
             end
-            
+
             gesturesCount = gesturesCount + 1
-            
+
             -- Reset gestures strings
             if (gesturesCount >= MAX_GESTURE_STRINGS) then
                 for i = 1, MAX_GESTURE_STRINGS do gestureStrings[i] = "\0" end
@@ -73,25 +73,25 @@ while not WindowShouldClose() do    -- Detect window close button or ESC key
     BeginDrawing()
 
         ClearBackground(RAYWHITE)
-        
+
         DrawRectangleRec(touchArea, GRAY)
         DrawRectangle(225, 15, screenWidth - 240, screenHeight - 30, RAYWHITE)
-        
+
         DrawText("GESTURES TEST AREA", screenWidth - 270, screenHeight - 40, 20, Fade(GRAY, 0.5))
-        
+
         for i = 1, gesturesCount do
             if ((i - 1)%2 == 0) then DrawRectangle(10, 30 + 20*(i - 1), 200, 20, Fade(LIGHTGRAY, 0.5))
             else DrawRectangle(10, 30 + 20*(i - 1), 200, 20, Fade(LIGHTGRAY, 0.3)) end
-            
+
             if (i < gesturesCount) then DrawText(gestureStrings[i], 35, 36 + 20*(i - 1), 10, DARKGRAY)
             else DrawText(gestureStrings[i], 35, 36 + 20*(i - 1), 10, MAROON) end
         end
-        
+
         DrawRectangleLines(10, 29, 200, screenHeight - 50, GRAY)
         DrawText("DETECTED GESTURES", 50, 15, 10, GRAY)
-        
+
         if (currentGesture ~= GESTURE_NONE) then DrawCircleV(touchPosition, 30, MAROON) end
-        
+
     EndDrawing()
     ---------------------------------------------------------------------------------------
 end

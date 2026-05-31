@@ -53,7 +53,7 @@ while not WindowShouldClose() do            -- Detect window close button or ESC
             DrawGrid(20, 1.0)
 
         End3dMode()
-        
+
         DrawTexture(texture, screenWidth - texture.width - 20, 20, WHITE)
         DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, GREEN)
 

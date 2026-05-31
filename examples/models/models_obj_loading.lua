@@ -49,7 +49,7 @@ while not WindowShouldClose() do            -- Detect window close button or ESC
             DrawGizmo(position)        -- Draw gizmo
 
         End3dMode()
-        
+
         DrawText("(c) Dwarf 3D model by David Moreno", screenWidth - 200, screenHeight - 20, 10, GRAY)
 
         DrawFPS(10, 10)

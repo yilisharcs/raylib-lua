@@ -45,7 +45,7 @@ while not WindowShouldClose() do            -- Detect window close button or ESC
     -- Update
     ---------------------------------------------------------------------------------------
     fontSize = fontSize + GetMouseWheelMove()*4.0
-    
+
     -- Choose font texture filter method
     if (IsKeyPressed(KEY.ONE)) then
         SetTextureFilter(font.texture, TextureFilter.POINT)
@@ -58,18 +58,18 @@ while not WindowShouldClose() do            -- Detect window close button or ESC
         SetTextureFilter(font.texture, TextureFilter.TRILINEAR)
         currentFontFilter = 2
     end
-    
+
     textSize = MeasureTextEx(font, msg, fontSize, 0)
-    
+
     if (IsKeyDown(KEY.LEFT)) then fontPosition.x = fontPosition.x - 10
     elseif (IsKeyDown(KEY.RIGHT)) then fontPosition.x = fontPosition.x + 10
     end
-    
+
     -- Load a dropped TTF file dynamically (at current fontSize)
     if (IsFileDropped()) then
-        droppedFiles = GetDroppedFiles() 
+        droppedFiles = GetDroppedFiles()
         count = #droppedFiles
-        
+
         if (count == 1) then -- Only support one ttf file dropped
             UnloadSpriteFont(font)
             font = LoadSpriteFontTTF(droppedFiles[1], fontSize, 0, 0)
@@ -90,15 +90,15 @@ while not WindowShouldClose() do            -- Detect window close button or ESC
         DrawText("Drop a new TTF font for dynamic loading", 20, 80, 10, DARKGRAY)
 
         DrawTextEx(font, msg, fontPosition, fontSize, 0, BLACK)
-        
+
         -- TODO: It seems texSize measurement is not accurate due to chars offsets...
         --DrawRectangleLines(fontPosition.x, fontPosition.y, textSize.x, textSize.y, RED)
-        
+
         DrawRectangle(0, screenHeight - 80, screenWidth, 80, LIGHTGRAY)
         DrawText(string.format("Font size: %02.02f", fontSize), 20, screenHeight - 50, 10, DARKGRAY)
         DrawText(string.format("Text size: [%02.02f, %02.02f]", textSize.x, textSize.y), 20, screenHeight - 30, 10, DARKGRAY)
         DrawText("CURRENT TEXTURE FILTER:", 250, 400, 20, GRAY)
-        
+
         if (currentFontFilter == 0) then DrawText("POINT", 570, 400, 20, BLACK)
         elseif (currentFontFilter == 1) then DrawText("BILINEAR", 570, 400, 20, BLACK)
         elseif (currentFontFilter == 2) then DrawText("TRILINEAR", 570, 400, 20, BLACK)

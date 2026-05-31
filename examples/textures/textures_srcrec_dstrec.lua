@@ -58,7 +58,7 @@ while not WindowShouldClose() do            -- Detect window close button or ESC
 
         DrawLine(destRec.x, 0, destRec.x, screenHeight, GRAY)
         DrawLine(0, destRec.y, screenWidth, destRec.y, GRAY)
-            
+
         DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, GRAY)
 
     EndDrawing()

@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
     if (argc > 1)
     {
         // TODO: Support additional arguments for lua file execution
-        
+
         if (IsFileExtension(argv[1], ".lua"))
         {
             rLuaInitDevice();            // Initialize lua device
@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
     else
     {
         bool launcherShouldClose = false;
-        
+
         while (!launcherShouldClose)
         {
             // Initialization
@@ -72,17 +72,17 @@ int main(int argc, char *argv[])
             int screenHeight = 450;
 
             InitWindow(screenWidth, screenHeight, "rLL - raylib Lua Launcher");
-            
+
             // NOTE: Drag and drop support only available for desktop platforms: Windows, Linux, OSX
             int count = 0;
             char **droppedFiles;
             char luaFileToLoad[256];
 
             bool runLuaFile = false;
-            
+
             SetTargetFPS(60);
             //--------------------------------------------------------------------------------------
-            
+
             while (!WindowShouldClose() && !runLuaFile)
             {
                 // Update
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
                 if (IsFileDropped())
                 {
                     droppedFiles = GetDroppedFiles(&count);
-                    
+
                     if (count == 1) // Only support one Lua file dropped
                     {
                         if (IsFileExtension(droppedFiles[0], ".lua"))
@@ -102,47 +102,47 @@ int main(int argc, char *argv[])
                         }
                         else TraceLog(WARNING, "[%s] Fileformat not supported", droppedFiles[0]);
                     }
-                    
+
                     ClearDroppedFiles();
                 }
                 //----------------------------------------------------------------------------------
-            
+
                 // Draw
                 //----------------------------------------------------------------------------------
                 BeginDrawing();
-                
+
                     ClearBackground(RAYWHITE);
-                    
+
                     DrawText("rLL - raylib Lua launcher", 10, 10, 20, LIGHTGRAY);
                     DrawText("rLL v1.1", 10, 430, 10, GRAY);
                     DrawText("< drag & drop raylib Lua file here >", 230, 180, 20, GRAY);
-                
+
                 EndDrawing();
                 //----------------------------------------------------------------------------------
             }
-            
+
             // De-Initialization
             //--------------------------------------------------------------------------------------
             ClearDroppedFiles();                // Clear internal buffers
-            
+
             CloseWindow();                      // Close window and OpenGL context
             //--------------------------------------------------------------------------------------
-            
+
             launcherShouldClose = true;         // Close launcher if no Lua file loaded
-            
+
             if (runLuaFile)
             {
                 TraceLog(INFO, "------------------------------------");
                 TraceLog(INFO, "Loading Lua file: %s", luaFileToLoad);
                 TraceLog(INFO, "------------------------------------");
-                
+
                 rLuaInitDevice();                // Initialize lua device
                 ChangeDirectory(GetDirectoryPath(luaFileToLoad));
                 rLuaExecuteFile(luaFileToLoad);
                 rLuaCloseDevice();               // Close Lua device and free resources
-                
+
                 launcherShouldClose = false;    // Return to launcher to load another Lua file
-                
+
                 TraceLog(INFO, "------------------------------------");
                 TraceLog(INFO, "Closing Lua file...");
                 TraceLog(INFO, "------------------------------------");

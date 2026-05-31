@@ -41,9 +41,9 @@ while not WindowShouldClose() do            -- Detect window close button or ESC
         ClearBackground(RAYWHITE)
 
         Begin3dMode(camera)
-        
+
             DrawBillboard(camera, bill, billPosition, 2.0, WHITE)
-            
+
             DrawGrid(10, 1.0)        -- Draw a grid
 
         End3dMode()

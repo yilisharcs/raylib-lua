@@ -53,9 +53,9 @@ while not WindowShouldClose() do        -- Detect window close button or ESC key
     for i = MAX_CIRCLES, 1, -1 do
         circles[i].alpha = circles[i].alpha + circles[i].speed
         circles[i].radius = circles[i].radius + circles[i].speed*10.0
-        
+
         if (circles[i].alpha > 1.0) then circles[i].speed = circles[i].speed*-1 end
-        
+
         if (circles[i].alpha <= 0.0) then
             circles[i].alpha = 0.0
             circles[i].radius = GetRandomValue(10, 40)
@@ -68,7 +68,7 @@ while not WindowShouldClose() do        -- Detect window close button or ESC key
 
     -- Get timePlayed scaled to bar dimensions
     timePlayed = (GetMusicTimePlayed(xm)/GetMusicTimeLength(xm)*(screenWidth - 40))*2
-    
+
     UpdateMusicStream(xm)        -- Update music buffer with new stream data
     ---------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ while not WindowShouldClose() do        -- Detect window close button or ESC key
     BeginDrawing()
 
         ClearBackground(RAYWHITE)
-        
+
         for i = MAX_CIRCLES, 1, -1 do
             DrawCircleV(circles[i].position, circles[i].radius, Fade(circles[i].color, circles[i].alpha))
         end

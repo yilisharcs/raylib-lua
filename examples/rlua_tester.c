@@ -48,7 +48,7 @@ int main()
     // ExecuteLuaFile("core_2d_camera.lua");
     // ExecuteLuaFile("core_world_screen.lua");
     // ExecuteLuaFile("core_vr_simulator.lua");             // ERROR: Lua Error: attempt to index a nil value
-    
+
     // [shapes] module examples
     // ChangeDirectory("./shapes");
     // ExecuteLuaFile("shapes_logo_raylib.lua");
@@ -56,7 +56,7 @@ int main()
     // ExecuteLuaFile("shapes_colors_palette.lua");
     // ExecuteLuaFile("shapes_logo_raylib_anim.lua");
     // ExecuteLuaFile("shapes_lines_bezier.lua");
-    
+
     // [textures] module examples
     // ChangeDirectory("./textures");
     // ExecuteLuaFile("textures_logo_raylib.lua");
@@ -79,7 +79,7 @@ int main()
     // ExecuteLuaFile("text_ttf_loading.lua");
     // ExecuteLuaFile("text_bmfont_unordered.lua");
     // ExecuteLuaFile("text_input_box.lua");                // ERROR: Lua Error: attempt to index a string value
-    
+
     // [models] module examples
     // ChangeDirectory("./models");
     // ExecuteLuaFile("models_geometric_shapes.lua");
@@ -89,21 +89,21 @@ int main()
     // ExecuteLuaFile("models_heightmap.lua");
     // ExecuteLuaFile("models_cubicmap.lua");
     // ExecuteLuaFile("models_mesh_picking.lua");           // ERROR: Lua Error: attempt to index a nil value
-    
+
     // [shaders] module examples
     // ChangeDirectory("./shaders");
     // ExecuteLuaFile("shaders_model_shader.lua");
     // ExecuteLuaFile("shaders_shapes_textures.lua");
     // ExecuteLuaFile("shaders_custom_uniform.lua");
     // ExecuteLuaFile("shaders_postprocessing.lua");
-    
+
     // [audio] module examples
     // ChangeDirectory("./audio");
     // ExecuteLuaFile("audio_sound_loading.lua");
     // ExecuteLuaFile("audio_music_stream.lua");
     // ExecuteLuaFile("audio_module_playing.lua");
     // ExecuteLuaFile("audio_raw_stream.lua");              // ERROR: UpdateAudioStream()
-    
+
     // TODO: [physac] module examples
     // ChangeDirectory("./physac");
     // ExecuteLuaFile("physics_demo.lua");
@@ -111,7 +111,7 @@ int main()
     // ExecuteLuaFile("physics_friction.lua");
     // ExecuteLuaFile("physics_restitution.lua");
     // ExecuteLuaFile("physics_shatter.lua");
-    
+
     // De-Initialization
     //--------------------------------------------------------------------------------------
     CloseLuaDevice();        // Close Lua device and free resources

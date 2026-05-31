@@ -50,18 +50,18 @@ SetTargetFPS(30)               -- Set our game to run at 30 frames-per-second
 while not WindowShouldClose() do    -- Detect window close button or ESC key
     -- Update
     ---------------------------------------------------------------------------------------
-    
+
     -- Refill audio stream if required
     if (IsAudioBufferProcessed(stream)) then
         local numSamples = 0
-        
+
         if (samplesLeft >= 4096) then numSamples = 4096
         else numSamples = samplesLeft end
 
         UpdateAudioStream(stream, data + (totalSamples - samplesLeft), numSamples)
-        
+
         samplesLeft = samplesLeft - numSamples
-        
+
         -- Reset samples feeding (loop audio)
         if (samplesLeft <= 0) then samplesLeft = totalSamples end
     end
@@ -74,12 +74,12 @@ while not WindowShouldClose() do    -- Detect window close button or ESC key
         ClearBackground(RAYWHITE)
 
         DrawText("SINE WAVE SHOULD BE PLAYING!", 240, 140, 20, LIGHTGRAY)
-        
+
         -- NOTE: Draw a part of the sine wave (only screen width)
         for i = 1, GetScreenWidth() do
             position.x = (i - 1)
             position.y = 250 + 50*data[i]
-            
+
             DrawPixelV(position, RED)
         end
 

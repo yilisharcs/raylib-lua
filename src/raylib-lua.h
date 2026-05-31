@@ -6,7 +6,7 @@
 *
 *   The following types are treated as objects with named fields, same as in C.
 *       Color, Vector2, Vector3, Rectangle, Ray, Camera, Camera2D
-*   
+*
 *   Lua defines utility functions to create those objects.
 *
 *   USAGE EXAMPLE:
@@ -244,13 +244,13 @@ static int LuaIndexImage(lua_State* L)
 {
     Image img = LuaGetArgument_Image(L, 1);
     const char *key = luaL_checkstring(L, 2);
-    
+
     if (!strcmp(key, "width")) LuaPush_int(L, img.width);
     else if (!strcmp(key, "height")) LuaPush_int(L, img.height);
     else if (!strcmp(key, "mipmaps")) LuaPush_int(L, img.mipmaps);
     else if (!strcmp(key, "format")) LuaPush_int(L, img.format);
     else return 0;
-    
+
     return 1;
 }
 
@@ -258,7 +258,7 @@ static int LuaIndexTexture2D(lua_State* L)
 {
     Texture2D img = LuaGetArgument_Texture2D(L, 1);
     const char *key = luaL_checkstring(L, 2);
-    
+
     if (!strcmp(key, "width")) LuaPush_int(L, img.width);
     else if (!strcmp(key, "height")) LuaPush_int(L, img.height);
     else if (!strcmp(key, "mipmaps")) LuaPush_int(L, img.mipmaps);
@@ -273,11 +273,11 @@ static int LuaIndexRenderTexture2D(lua_State* L)
 {
     RenderTexture2D img = LuaGetArgument_RenderTexture2D(L, 1);
     const char *key = luaL_checkstring(L, 2);
-    
+
     if (!strcmp(key, "texture")) LuaPush_Texture2D(L, img.texture);
     else if (!strcmp(key, "depth")) LuaPush_Texture2D(L, img.depth);
     else return 0;
-    
+
     return 1;
 }
 
@@ -285,12 +285,12 @@ static int LuaIndexFont(lua_State* L)
 {
     Font img = LuaGetArgument_Font(L, 1);
     const char *key = luaL_checkstring(L, 2);
-    
+
     if (!strcmp(key, "baseSize")) LuaPush_int(L, img.baseSize);
     else if (!strcmp(key, "texture")) LuaPush_Texture2D(L, img.texture);
     else if (!strcmp(key, "charsCount")) LuaPush_int(L, img.charsCount);
     else return 0;
-    
+
     return 1;
 }
 
@@ -2278,7 +2278,7 @@ int lua_LoadImage(lua_State *L)
 int lua_LoadImageEx(lua_State* L)
 {
     // TODO: arg1 parameter is a Color array...
-    
+
     GET_TABLE(Color, arg1, 1);              // Color *pixels
     int arg2 = LuaGetArgument_int(L, 2);
     int arg3 = LuaGetArgument_int(L, 3);
@@ -2292,7 +2292,7 @@ int lua_LoadImageEx(lua_State* L)
 int lua_LoadImagePro(lua_State* L)
 {
     // TODO: arg1 parameter is a void pointer...
-    
+
     void *arg1 = LuaGetArgument_ptr(L, 1);
     int arg2 = LuaGetArgument_int(L, 2);
     int arg3 = LuaGetArgument_int(L, 3);
@@ -2398,7 +2398,7 @@ int lua_GetImageData(lua_State* L)
 int lua_GetImageDataNormalized(lua_State *L)
 {
     // TODO.
-    
+
     return 1;
 }
 
@@ -2427,7 +2427,7 @@ int lua_GetTextureData(lua_State *L)
 int lua_UpdateTexture(lua_State* L)
 {
     // TODO: arg2 parameters is a void pointer...
-    
+
     Texture2D arg1 = LuaGetArgument_Texture2D(L, 1);
     void *arg2 = LuaGetArgument_ptr(L, 2);
     UpdateTexture(arg1, arg2);      // ISSUE: #2 string expected, got table -> GetImageData() returns a table!
@@ -3929,7 +3929,7 @@ int lua_LoadWave(lua_State *L)
 int lua_LoadWaveEx(lua_State* L)
 {
     // TODO: arg1 parameter should be a float arrat...
-    
+
     float *arg1 = 0;
     int arg2 = LuaGetArgument_int(L, 2);
     int arg3 = LuaGetArgument_int(L, 3);
@@ -3962,7 +3962,7 @@ int lua_LoadSoundFromWave(lua_State *L)
 int lua_UpdateSound(lua_State* L)
 {
     // TODO: arg2 parameter is a void pointer...
-    
+
     Sound arg1 = LuaGetArgument_Sound(L, 1);
     void *arg2 = LuaGetArgument_ptr(L, 2);
     int arg3 = LuaGetArgument_int(L, 3);
@@ -4080,7 +4080,7 @@ int lua_WaveCrop(lua_State *L)
 int lua_GetWaveData(lua_State* L)
 {
     // TODO: return value should be a float array...
-    
+
     Wave arg1 = LuaGetArgument_Wave(L, 1);
     float *result = GetWaveData(arg1);
     //LuaPush_float(L, result);
@@ -4217,7 +4217,7 @@ int lua_InitAudioStream(lua_State *L)
 int lua_UpdateAudioStream(lua_State* L)
 {
     // TODO: arg2 parameter is a void pointer...
-    
+
     AudioStream arg1 = LuaGetArgument_AudioStream(L, 1);
     void *arg2 = LuaGetArgument_ptr(L, 2);
     int arg3 = LuaGetArgument_int(L, 3);
@@ -5355,11 +5355,11 @@ static luaL_Reg raylib_functions[] = {
     REG(StopAudioStream)
     REG(SetAudioStreamVolume)
     REG(SetAudioStreamPitch)
-    
-    
+
+
     // [raymath] module functions - general
     REG(Clamp)
-    
+
     // [raymath] module functions - Vector2
     REG(Vector2Zero)
     REG(Vector2One)
@@ -5390,7 +5390,7 @@ static luaL_Reg raylib_functions[] = {
     REG(VectorTransform)
     REG(VectorLerp)
     REG(VectorReflect)
-    
+
     // [raymath] module functions - Matrix
     REG(MatrixDeterminant)
     REG(MatrixTrace)
@@ -5411,7 +5411,7 @@ static luaL_Reg raylib_functions[] = {
     REG(MatrixPerspective)
     REG(MatrixOrtho)
     REG(MatrixLookAt)
-    
+
     // [raymath] module functions - Quaternion
     REG(QuaternionLength)
     REG(QuaternionNormalize)
@@ -5424,7 +5424,7 @@ static luaL_Reg raylib_functions[] = {
     REG(QuaternionFromEuler)
     REG(QuaternionToEuler)
     REG(QuaternionTransform)
-    
+
     // [physac] module functions
     REG(InitPhysics)
     REG(IsPhysicsEnabled)
@@ -5466,7 +5466,7 @@ RLUADEF void rLuaInitDevice(void)
 {
     mainLuaState = luaL_newstate();
     L = mainLuaState;
-    
+
     LuaStartEnum();
     LuaSetEnum("SHOW_LOGO", 1);
     LuaSetEnum("FULLSCREEN_MODE", 2);
@@ -5545,7 +5545,7 @@ RLUADEF void rLuaInitDevice(void)
     LuaSetEnum("RIGHT_BUTTON", 1);
     LuaSetEnum("MIDDLE_BUTTON", 2);
     LuaEndEnum("MOUSE");
-    
+
     LuaStartEnum();
     LuaSetEnum("PLAYER1", 0);
     LuaSetEnum("PLAYER2", 1);
@@ -5660,7 +5660,7 @@ RLUADEF void rLuaInitDevice(void)
     LuaSetEnum("ADDITIVE", BLEND_ADDITIVE);
     LuaSetEnum("MULTIPLIED", BLEND_MULTIPLIED);
     LuaEndEnum("BlendMode");
-    
+
     LuaStartEnum();
     LuaSetEnum("POINT", FILTER_POINT);
     LuaSetEnum("BILINEAR", FILTER_BILINEAR);

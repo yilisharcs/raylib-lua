@@ -33,7 +33,7 @@ while not WindowShouldClose() do        -- Detect window close button or ESC key
     -- Update
     ------------------------------------------------------------------------------------
     camera = UpdateCamera(camera)       -- Update camera
-    
+
     -- Calculate cube screen space position (with a little offset to be in top)
     cubeScreenPosition = GetWorldToScreen(Vector3(cubePosition.x, cubePosition.y + 2.5, cubePosition.z), camera)
     ------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ while not WindowShouldClose() do        -- Detect window close button or ESC key
             DrawGrid(10, 1.0)
 
         End3dMode()
-        
+
         DrawText("Enemy: 100 / 100", cubeScreenPosition.x//1 - MeasureText("Enemy: 100 / 100", 20)//2, cubeScreenPosition.y//1, 20, BLACK)
         DrawText("Text is always on top of the cube", (screenWidth - MeasureText("Text is always on top of the cube", 20))//2, 25, 20, GRAY)
 

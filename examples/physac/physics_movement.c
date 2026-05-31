@@ -7,9 +7,9 @@
 *
 *   Use the following line to compile:
 *
-*   gcc -o $(NAME_PART).exe $(FILE_NAME) -s $(RAYLIB_DIR)\raylib\raylib_icon -static -lraylib -lpthread 
+*   gcc -o $(NAME_PART).exe $(FILE_NAME) -s $(RAYLIB_DIR)\raylib\raylib_icon -static -lraylib -lpthread
 *   -lglfw3 -lopengl32 -lgdi32 -lopenal32 -lwinmm -std=c99 -Wl,--subsystem,windows -Wl,-allow-multiple-definition
-*   
+*
 *   Copyright (c) 2017 Victor Fisac
 *
 ********************************************************************************************/
@@ -55,7 +55,7 @@ int main()
     // Create movement physics body
     PhysicsBody body = CreatePhysicsBodyRectangle((Vector2){ screenWidth/2, screenHeight/2 }, 50, 50, 1);
     body->freezeOrient = true;  // Constrain body rotation to avoid little collision torque amounts
-    
+
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
 
@@ -119,9 +119,9 @@ int main()
     }
 
     // De-Initialization
-    //--------------------------------------------------------------------------------------   
+    //--------------------------------------------------------------------------------------
     ClosePhysics();       // Unitialize physics
-    
+
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 

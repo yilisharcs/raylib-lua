@@ -42,7 +42,7 @@ while not WindowShouldClose() do    -- Detect window close button or ESC key
     -- Update
     ------------------------------------------------------------------------------------
     camera = UpdateCamera(camera);          -- Update camera (simulator mode)
-   
+
     if (IsKeyPressed(KEY.SPACE)) then ToggleVrMode() end   -- Toggle VR mode
     ------------------------------------------------------------------------------------
 
@@ -53,7 +53,7 @@ while not WindowShouldClose() do    -- Detect window close button or ESC key
         ClearBackground(RAYWHITE)
 
         BeginVrDrawing();
-        
+
             Begin3dMode(camera)
 
                 DrawCube(cubePosition, 2.0, 2.0, 2.0, RED)
@@ -62,7 +62,7 @@ while not WindowShouldClose() do    -- Detect window close button or ESC key
                 DrawGrid(40, 1.0)
 
             End3dMode()
-        
+
         EndVrDrawing();
 
         DrawFPS(10, 10)

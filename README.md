@@ -17,7 +17,7 @@ raylib-lua could be useful for prototyping, tools development, graphic applicati
 A raylib-lua launcher is also provided: [rluaLauncher](tools/rLuaLauncher/rlualauncher.c). This launcher allows you to run raylib-lua
 programs from command line, or just with *drag & drop* of .lua files into *rlualauncher.exe*.
 
-Note that launcher can also be compiled for other platforms, just need to link with Lua library and raylib library. 
+Note that launcher can also be compiled for other platforms, just need to link with Lua library and raylib library.
 For more details, just check comments on sources.
 
 ### rLuaParser
@@ -26,7 +26,7 @@ In an effort to automatize raylib-lua binding generation I created [rLuaParser](
 
 # License
 
-raylib-lua is licensed under an unmodified zlib/libpng license, which is an OSI-certified, 
+raylib-lua is licensed under an unmodified zlib/libpng license, which is an OSI-certified,
 BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
-	
+
 *Copyright (c) 2016-2019 Ghassan Al-Mashareqa and Ramon Santamaria ([@raysan5](https://twitter.com/raysan5))*

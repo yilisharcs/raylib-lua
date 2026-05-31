@@ -35,24 +35,24 @@ while not WindowShouldClose() do            -- Detect window close button or ESC
     ---------------------------------------------------------------------------------------
     if (CheckCollisionPointRec(GetMousePosition(), textBox)) then mouseOnText = true
     else mouseOnText = false end
-    
+
     if (mouseOnText) then
         local key = GetKeyPressed()
-        
+
         -- NOTE: Only allow keys in range [32..125]
         if ((key >= 32) and (key <= 125) and (letterCount < MAX_INPUT_CHARS)) then
             name[letterCount] = key
             letterCount = letterCount + 1
         end
-        
+
         if (key == KEY_BACKSPACE) then
             letterCount = letterCount - 1
             name[letterCount] = '\0'
-            
+
             if (letterCount < 0) then letterCount = 0 end
         end
     end
-    
+
     if (mouseOnText) then framesCounter = framesCounter + 1
     else framesCounter = 0 end
     ---------------------------------------------------------------------------------------
@@ -68,9 +68,9 @@ while not WindowShouldClose() do            -- Detect window close button or ESC
         DrawRectangleRec(textBox, LIGHTGRAY)
         if (mouseOnText) then DrawRectangleLines(textBox.x, textBox.y, textBox.width, textBox.height, RED)
         else DrawRectangleLines(textBox.x, textBox.y, textBox.width, textBox.height, DARKGRAY) end
-        
+
         DrawText(name, textBox.x + 5, textBox.y + 8, 40, MAROON)
-        
+
         DrawText(string.format("INPUT CHARS: %i/%i", letterCount, MAX_INPUT_CHARS), 315, 250, 20, DARKGRAY)
 
         if (mouseOnText) then

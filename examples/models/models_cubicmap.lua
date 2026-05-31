@@ -54,10 +54,10 @@ while not WindowShouldClose() do            -- Detect window close button or ESC
             DrawModel(map, mapPosition, 1.0, WHITE)
 
         End3dMode()
-        
+
         DrawTextureEx(cubicmap, (Vector2)(screenWidth - cubicmap.width*4 - 20, 20), 0.0, 4.0, WHITE)
         DrawRectangleLines(screenWidth - cubicmap.width*4 - 20, 20, cubicmap.width*4, cubicmap.height*4, GREEN)
-        
+
         DrawText("cubicmap image used to", 658, 90, 10, GRAY)
         DrawText("generate map 3d model", 658, 104, 10, GRAY)
 

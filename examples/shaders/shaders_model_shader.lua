@@ -30,7 +30,7 @@ local camera = Camera(Vector3(3.0, 3.0, 3.0), Vector3(0.0, 1.5, 0.0), Vector3(0.
 
 local dwarf = LoadModel("resources/model/dwarf.obj")                   -- Load OBJ model
 local texture = LoadTexture("resources/model/dwarf_diffuse.png")       -- Load model texture
-local shader = LoadShader("resources/shaders/glsl330/base.vs", 
+local shader = LoadShader("resources/shaders/glsl330/base.vs",
                           "resources/shaders/glsl330/grayscale.fs")    -- Load model shader
 
 dwarf.material.shader = shader            -- Set shader effect to 3d model
@@ -64,7 +64,7 @@ while not WindowShouldClose() do          -- Detect window close button or ESC k
             DrawGrid(10, 1.0)     -- Draw a grid
 
         End3dMode()
-        
+
         DrawText("(c) Dwarf 3D model by David Moreno", screenWidth - 200, screenHeight - 20, 10, GRAY)
 
         DrawFPS(10, 10)
