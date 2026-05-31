@@ -10,15 +10,30 @@ raylib-lua could be useful for prototyping, tools development, graphic applicati
 
 <br><br>
 
-**WARNING: Current raylib-lua binding is very outdated! It's based on raylib 1.7 and port to newer raylib versions is stopped. Consider switching to [raylib-lua-sol](https://github.com/RobLoach/raylib-lua-sol), updated to latest raylib 2.6.**
+### Build and Usage
 
+A Linux build script is provided to compile the library and the launcher:
+
+```bash
+./build.lua
+```
+
+It supports both X11 (default) and Wayland backends. For Wayland:
+
+```bash
+CFLAGS="-D_GLFW_WAYLAND" ./build.lua
+```
 
 ### rLuaLauncher
 
 A raylib-lua launcher is also provided: [rluaLauncher](tools/rLuaLauncher/rlualauncher.c). This launcher allows you to run raylib-lua
-programs from command line, or just with *drag & drop* of .lua files into *rlualauncher.exe*.
+programs from the command line:
 
-Note that launcher can also be compiled for other platforms, just need to link with Lua library and raylib library. 
+```bash
+./build/rlualauncher examples/core/core_basic_window.lua
+```
+
+Note that the launcher can also be compiled for other platforms, just link with the Lua library and raylib library.
 For more details, just check comments on sources.
 
 ### rLuaParser
