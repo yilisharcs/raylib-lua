@@ -9,5 +9,9 @@
             .url = "git+https://codeberg.org/yilisharcs/madoshi#129329775167d9ddfd43f5a91d6a38808ff44ea1",
             .hash = "madoshi-0.0.1+5.5.1-bops68ffDgDWUGawqFOpUuhCCRGY5MYTpLlKmksuvBVw",
         },
+        .raylib = .{
+            .url = "git+https://github.com/raysan5/raylib?ref=6.2#02566453880e06bec97f5b8160fa6fe1e98397ca",
+            .hash = "raylib-6.0.0-whq8uDpYOAVcH_KyOZ0--nYF1dEsjdQ5r4e9R24UkQOi",
+        },
     },
 }
