@@ -1,0 +1,1500 @@
+-- SPDX-FileCopyrightText: 2026 yilisharcs
+-- SPDX-License-Identifier: Zlib
+
+---@meta _
+error("Cannot require a meta file")
+
+---@class rl
+---@field Vector2 fun(x: number, y: number): rl.Vector2
+---@field Vector3 fun(x: number, y: number, z: number): rl.Vector3
+---@field Vector4 fun(x: number, y: number, z: number, w: number): rl.Vector4
+--- Create a Quaternion. Callable table with factory functions.
+---@field Quaternion rl.QuaternionConstructor
+--- Create a Matrix. Callable table with factory functions.
+---@field Matrix rl.MatrixConstructor
+--- Create a Color. Callable table with factory functions.
+---@field Color rl.ColorConstructor
+--- Create a Camera3D. Positional fields: position, target, up, fovy, projection.
+---@field Camera3D fun(position: rl.Vector3, target: rl.Vector3, up: rl.Vector3, fovy: number, projection: integer): rl.Camera3D
+--- Clamp float value
+---@field Clamp fun(value: number, min: number, max: number): number
+--- Calculate linear interpolation between two floats
+---@field Lerp fun(start: number, end: number, amount: number): number
+--- Normalize input value within input range
+---@field Normalize fun(value: number, start: number, end: number): number
+--- Remap input value within input range to output range
+---@field Remap fun(value: number, inputStart: number, inputEnd: number, outputStart: number, outputEnd: number): number
+--- Wrap input value from min to max
+---@field Wrap fun(value: number, min: number, max: number): number
+--- Check whether two given floats are almost equal
+---@field FloatEquals fun(x: number, y: number): boolean
+---@field InitWindow fun(width: integer, height: integer, title: string)
+---@field CloseWindow fun()
+---@field WindowShouldClose fun(): boolean
+---@field IsWindowReady fun(): boolean
+---@field IsWindowFullscreen fun(): boolean
+---@field IsWindowHidden fun(): boolean
+---@field IsWindowMinimized fun(): boolean
+---@field IsWindowMaximized fun(): boolean
+---@field IsWindowFocused fun(): boolean
+---@field IsWindowResized fun(): boolean
+---@field IsWindowState fun(flag: integer): boolean
+---@field SetWindowState fun(flags: integer)
+---@field ClearWindowState fun(flags: integer)
+---@field ToggleFullscreen fun()
+---@field ToggleBorderlessWindowed fun()
+---@field MaximizeWindow fun()
+---@field MinimizeWindow fun()
+---@field RestoreWindow fun()
+---@field SetWindowTitle fun(title: string)
+---@field SetWindowPosition fun(x: integer, y: integer)
+---@field SetWindowMonitor fun(monitor: integer)
+---@field SetWindowMinSize fun(width: integer, height: integer)
+---@field SetWindowMaxSize fun(width: integer, height: integer)
+---@field SetWindowSize fun(width: integer, height: integer)
+---@field SetWindowOpacity fun(opacity: number)
+---@field SetWindowFocused fun()
+---@field GetWindowHandle fun(): lightuserdata
+---@field GetScreenWidth fun(): integer
+---@field GetScreenHeight fun(): integer
+---@field GetRenderWidth fun(): integer
+---@field GetRenderHeight fun(): integer
+---@field GetMonitorCount fun(): integer
+---@field GetCurrentMonitor fun(): integer
+---@field GetMonitorPosition fun(monitor: integer): rl.Vector2
+---@field GetMonitorWidth fun(monitor: integer): integer
+---@field GetMonitorHeight fun(monitor: integer): integer
+---@field GetMonitorPhysicalWidth fun(monitor: integer): integer
+---@field GetMonitorPhysicalHeight fun(monitor: integer): integer
+---@field GetMonitorRefreshRate fun(monitor: integer): integer
+---@field GetWindowPosition fun(): rl.Vector2
+---@field GetWindowScaleDPI fun(): rl.Vector2
+---@field GetMonitorName fun(monitor: integer): string?
+---@field SetClipboardText fun(text: string)
+---@field GetClipboardText fun(): string?
+---@field EnableEventWaiting fun()
+---@field DisableEventWaiting fun()
+---@field ShowCursor fun()
+---@field HideCursor fun()
+---@field IsCursorHidden fun(): boolean
+---@field EnableCursor fun()
+---@field DisableCursor fun()
+---@field IsCursorOnScreen fun(): boolean
+---@field ClearBackground fun(color: rl.Color)
+---@field BeginDrawing fun()
+---@field EndDrawing fun()
+---@field BeginMode2D fun(camera: rl.Camera2D)
+---@field EndMode2D fun()
+---@field BeginMode3D fun(camera: rl.Camera3D)
+---@field EndMode3D fun()
+--- Begin drawing to render texture.
+---@field BeginTextureMode fun(target: rl.RenderTexture)
+---@field EndTextureMode fun()
+--- Begin custom shader drawing
+---@field BeginShaderMode fun(shader: rl.Shader)
+---@field EndShaderMode fun()
+---@field BeginBlendMode fun(mode: integer)
+---@field EndBlendMode fun()
+---@field BeginScissorMode fun(x: integer, y: integer, width: integer, height: integer)
+---@field EndScissorMode fun()
+--- Begin stereo rendering (requires VR simulator)
+---@field BeginVrStereoMode fun(config: rl.VrStereoConfig)
+---@field EndVrStereoMode fun()
+--- Get a ray trace from screen position (i.e mouse)
+---@field GetScreenToWorldRay fun(position: rl.Vector2, camera: rl.Camera3D): rl.Ray
+--- Get a ray trace from screen position (i.e mouse) in a viewport
+---@field GetScreenToWorldRayEx fun(position: rl.Vector2, camera: rl.Camera3D, width: integer, height: integer): rl.Ray
+--- Get screen space position for a 3d world space position
+---@field GetWorldToScreen fun(position: rl.Vector3, camera: rl.Camera3D): rl.Vector2
+--- Get sized screen space position for a 3d world space position
+---@field GetWorldToScreenEx fun(position: rl.Vector3, camera: rl.Camera3D, width: integer, height: integer): rl.Vector2
+--- Get screen space position for a 2d camera world space position
+---@field GetWorldToScreen2D fun(position: rl.Vector2, camera: rl.Camera2D): rl.Vector2
+--- Get world space position for a 2d camera screen space position
+---@field GetScreenToWorld2D fun(position: rl.Vector2, camera: rl.Camera2D): rl.Vector2
+--- Get camera 2d transform matrix
+---@field GetCameraMatrix2D fun(camera: rl.Camera2D): rl.Matrix
+---@field SetTargetFPS fun(fps: integer)
+---@field GetFrameTime fun(): number
+---@field GetTime fun(): number
+---@field GetFPS fun(): integer
+---@field SwapScreenBuffer fun()
+---@field PollInputEvents fun()
+---@field WaitTime fun(seconds: number)
+---@field SetRandomSeed fun(seed: integer)
+---@field GetRandomValue fun(min: integer, max: integer): integer
+---@field LoadRandomSequence fun(count: integer, min: integer, max: integer): integer[]?
+---@field TakeScreenshot fun(fileName: string)
+---@field SetConfigFlags fun(flags: integer)
+---@field OpenURL fun(url: string)
+---@field SetTraceLogLevel fun(logLevel: integer)
+---@field TraceLog fun(level: integer, format: string, ...)
+---@field LoadFileData fun(fileName: string): string?
+---@field SaveFileData fun(fileName: string, data: string): boolean
+---@field ExportDataAsCode fun(data: string, fileName: string): boolean
+---@field LoadFileText fun(fileName: string): string?
+---@field SaveFileText fun(fileName: string, text: string): boolean
+---@field FileRename fun(fileName: string, fileRename: string): integer
+---@field FileRemove fun(fileName: string): integer
+---@field FileCopy fun(srcPath: string, dstPath: string): integer
+---@field FileMove fun(srcPath: string, dstPath: string): integer
+---@field FileTextReplace fun(fileName: string, search: string, replacement: string): integer
+---@field FileTextFindIndex fun(fileName: string, search: string): integer
+---@field FileExists fun(fileName: string): boolean
+---@field DirectoryExists fun(dirPath: string): boolean
+---@field IsFileExtension fun(fileName: string, ext: string): boolean
+---@field IsFileHidden fun(filePath: string): boolean
+---@field GetFileLength fun(fileName: string): integer
+---@field GetFileModTime fun(fileName: string): integer
+---@field GetFileExtension fun(fileName: string): string?
+---@field GetFileName fun(filePath: string): string?
+---@field GetFileNameWithoutExt fun(filePath: string): string?
+---@field GetDirectoryPath fun(filePath: string): string?
+---@field GetPrevDirectoryPath fun(dirPath: string): string?
+---@field GetWorkingDirectory fun(): string?
+---@field GetApplicationDirectory fun(): string?
+---@field MakeDirectory fun(dirPath: string): integer
+---@field ChangeDirectory fun(dirPath: string): integer
+---@field IsPathFile fun(path: string): boolean
+---@field IsPathDirectory fun(path: string): boolean
+---@field IsPathAbsolute fun(path: string): boolean
+---@field IsFileNameValid fun(fileName: string): boolean
+---@field LoadDirectoryFiles fun(dirPath: string): string[]
+---@field LoadDirectoryFilesEx fun(basePath: string, filter: string, scanSubdirs: boolean): string[]
+---@field IsFileDropped fun(): boolean
+---@field LoadDroppedFiles fun(): string[]
+---@field GetDirectoryFileCount fun(dirPath: string): integer
+---@field GetDirectoryFileCountEx fun(basePath: string, filter: string, scanSubdirs: boolean): integer
+---@field CompressData fun(data: string): string?
+---@field DecompressData fun(compData: string): string?
+---@field EncodeDataBase64 fun(data: string): string?
+---@field DecodeDataBase64 fun(text: string): string?
+---@field ComputeCRC32 fun(data: string): integer
+---@field ComputeMD5 fun(data: string): integer[]
+---@field ComputeSHA1 fun(data: string): integer[]
+---@field ComputeSHA256 fun(data: string): integer[]
+---@field IsKeyPressed fun(key: integer): boolean
+---@field IsKeyPressedRepeat fun(key: integer): boolean
+---@field IsKeyDown fun(key: integer): boolean
+---@field IsKeyReleased fun(key: integer): boolean
+---@field IsKeyUp fun(key: integer): boolean
+---@field GetKeyPressed fun(): integer
+---@field GetCharPressed fun(): integer
+---@field GetKeyName fun(key: integer): string?
+---@field SetExitKey fun(key: integer)
+---@field IsGamepadAvailable fun(gamepad: integer): boolean
+---@field GetGamepadName fun(gamepad: integer): string?
+---@field IsGamepadButtonPressed fun(gamepad: integer, button: integer): boolean
+---@field IsGamepadButtonDown fun(gamepad: integer, button: integer): boolean
+---@field IsGamepadButtonReleased fun(gamepad: integer, button: integer): boolean
+---@field IsGamepadButtonUp fun(gamepad: integer, button: integer): boolean
+---@field GetGamepadButtonPressed fun(): integer
+---@field GetGamepadAxisCount fun(gamepad: integer): integer
+---@field GetGamepadAxisMovement fun(gamepad: integer, axis: integer): number
+---@field SetGamepadMappings fun(mappings: string): integer
+---@field SetGamepadVibration fun(gamepad: integer, leftMotor: number, rightMotor: number, duration: number)
+---@field IsMouseButtonPressed fun(button: integer): boolean
+---@field IsMouseButtonDown fun(button: integer): boolean
+---@field IsMouseButtonReleased fun(button: integer): boolean
+---@field IsMouseButtonUp fun(button: integer): boolean
+---@field GetMouseX fun(): integer
+---@field GetMouseY fun(): integer
+---@field GetMousePosition fun(): rl.Vector2
+---@field GetMouseDelta fun(): rl.Vector2
+---@field SetMousePosition fun(x: integer, y: integer)
+---@field SetMouseOffset fun(offsetX: integer, offsetY: integer)
+---@field SetMouseScale fun(scaleX: number, scaleY: number)
+---@field GetMouseWheelMove fun(): number
+---@field GetMouseWheelMoveV fun(): rl.Vector2
+---@field SetMouseCursor fun(cursor: integer)
+---@field GetTouchX fun(): integer
+---@field GetTouchY fun(): integer
+---@field GetTouchPosition fun(index: integer): rl.Vector2
+---@field GetTouchPointId fun(index: integer): integer
+---@field GetTouchPointCount fun(): integer
+--- Load image from file into CPU memory (RAM).
+---@field LoadImage fun(fileName: string): rl.Image?
+--- Load image from RAW file data.
+--- format: a PixelFormat value
+--- headerSize: number of bytes to skip at the start of the file
+---@field LoadImageRaw fun(fileName: string, width: integer, height: integer, format: integer, headerSize: integer): rl.Image?
+--- Load image sequence from file (frames appended to image.data).
+--- Returns the frame count as the second value.
+---@field LoadImageAnim fun(fileName: string): rl.Image?, integer
+--- Load image sequence from memory buffer.
+--- Returns the frame count as the second value.
+---@field LoadImageAnimFromMemory fun(fileType: string, fileData: string): rl.Image?, integer
+--- Load image from memory buffer, fileType refers to extension: i.e. '.png'.
+---@field LoadImageFromMemory fun(fileType: string, fileData: string): rl.Image?
+---@field LoadImageFromTexture fun(texture: rl.Texture): rl.Image?
+---@field LoadImageFromScreen fun(): rl.Image?
+--- Generate image: plain color.
+---@field GenImageColor fun(width: integer, height: integer, color: rl.Color): rl.Image?
+--- Generate image: linear gradient.
+--- direction: degrees [0..360], 0 is a vertical gradient
+---@field GenImageGradientLinear fun(width: integer, height: integer, direction: integer, start: rl.Color, end: rl.Color): rl.Image?
+---@field GenImageGradientRadial fun(width: integer, height: integer, density: number, inner: rl.Color, outer: rl.Color): rl.Image?
+---@field GenImageGradientSquare fun(width: integer, height: integer, density: number, inner: rl.Color, outer: rl.Color): rl.Image?
+---@field GenImageChecked fun(width: integer, height: integer, checksX: integer, checksY: integer, col1: rl.Color, col2: rl.Color): rl.Image?
+---@field GenImageWhiteNoise fun(width: integer, height: integer, factor: number): rl.Image?
+---@field GenImagePerlinNoise fun(width: integer, height: integer, offsetX: integer, offsetY: integer, scale: number): rl.Image?
+---@field GenImageCellular fun(width: integer, height: integer, tileSize: integer): rl.Image?
+---@field GenImageText fun(width: integer, height: integer, text: string): rl.Image?
+--- Create an image from text (default font).
+--- Errors if the default font is unavailable.
+---@field ImageText fun(text: string, fontSize: integer, color: rl.Color): rl.Image?
+---@field ImageTextEx fun(font: rl.Font, text: string, fontSize: number, spacing: number, tint: rl.Color): rl.Image?
+---@field SetWindowIcon fun(image: rl.Image)
+---@field SetWindowIcons fun(images: rl.Image[])
+---@field GetClipboardImage fun(): rl.Image?
+---@field LoadTexture fun(fileName: string): rl.Texture?
+---@field LoadTextureFromImage fun(image: rl.Image): rl.Texture?
+---@field LoadTextureCubemap fun(image: rl.Image, layout: integer): rl.Texture?
+--- Get pixel data size in bytes for certain format.
+---@field GetPixelDataSize fun(width: integer, height: integer, format: integer): integer
+--- Load texture for rendering (framebuffer).
+---@field LoadRenderTexture fun(width: integer, height: integer): rl.RenderTexture?
+--- Load texture for rendering (framebuffer), with specific format.
+---@field LoadRenderTextureEx fun(width: integer, height: integer, format: integer): rl.RenderTexture?
+---@field GetFontDefault fun(): rl.Font?
+---@field LoadFont fun(fileName: string): rl.Font?
+---@field LoadFontEx fun(fileName: string, fontSize: integer, codepoints: integer[]?): rl.Font?
+---@field LoadFontFromImage fun(image: rl.Image, key: rl.Color, firstChar: integer): rl.Font?
+--- Load font from memory buffer, fileType refers to extension: i.e. '.ttf'.
+---@field LoadFontFromMemory fun(fileType: string, fileData: string, fontSize: integer, codepoints: integer[]?): rl.Font?
+---@field DrawFPS fun(posX: integer, posY: integer)
+---@field DrawText fun(text: string, posX: integer, posY: integer, fontSize: integer, color: rl.Color)
+---@field SetTextLineSpacing fun(spacing: integer)
+---@field MeasureText fun(text: string, fontSize: integer): integer
+---@field LoadUTF8 fun(codepoints: integer[]): string?
+---@field LoadCodepoints fun(text: string): integer[]?
+---@field GetCodepointCount fun(text: string): integer
+---@field GetCodepoint fun(text: string): integer, integer
+--- Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure.
+--- position: 1-based byte offset, defaults to 1
+---@field GetCodepointNext fun(text: string, position: integer?): integer, integer
+--- Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure.
+--- position: 1-based byte offset, defaults to one past the end
+---@field GetCodepointPrevious fun(text: string, position: integer?): integer, integer
+---@field CodepointToUTF8 fun(codepoint: integer): string?, integer
+--- Load text as separate lines ('\n').
+---@field LoadTextLines fun(text: string): string[]?
+--- Text formatting with variables (sprintf() style).
+--- Accepts Lua string.format arguments.
+---@field TextFormat fun(text: string, ...): string
+--- Get text between two strings.
+---@field GetTextBetween fun(text: string, begin: string, end: string): string?
+--- Replace text between two specific strings.
+---@field TextReplaceBetweenAlloc fun(text: string, begin: string, end: string, replacement: string): string?
+--- Insert text in a defined byte position.
+---@field TextInsertAlloc fun(text: string, insert: string, position: integer): string?
+--- Split text into multiple strings.
+--- delimiter: byte value of the delimiter character
+---@field TextSplit fun(text: string, delimiter: integer): string[]?
+--- Get Pascal case notation version of provided string.
+---@field TextToPascal fun(text: string): string?
+--- Get Snake case notation version of provided string.
+---@field TextToSnake fun(text: string): string?
+--- Get Camel case notation version of provided string.
+---@field TextToCamel fun(text: string): string?
+--- Get integer value from text.
+---@field TextToInteger fun(text: string): integer
+--- Get float value from text.
+---@field TextToFloat fun(text: string): number
+---@field SetShapesTexture fun(texture: rl.Texture, rec: rl.Rectangle)
+---@field GetShapesTexture fun(): rl.Texture
+--- Get texture source rectangle that is used for shapes drawing
+---@field GetShapesTextureRectangle fun(): rl.Rectangle
+--- Draw a pixel using geometry [Can be slow, use with care]
+---@field DrawPixel fun(posX: integer, posY: integer, color: rl.Color)
+--- Draw a pixel using geometry (Vector version) [Can be slow, use with care]
+---@field DrawPixelV fun(position: rl.Vector2, color: rl.Color)
+---@field DrawLine fun(startPosX: integer, startPosY: integer, endPosX: integer, endPosY: integer, color: rl.Color)
+--- Draw a line (using gl lines)
+---@field DrawLineV fun(startPos: rl.Vector2, endPos: rl.Vector2, color: rl.Color)
+--- Draw a line (using triangles/quads)
+---@field DrawLineEx fun(startPos: rl.Vector2, endPos: rl.Vector2, thick: number, color: rl.Color)
+--- Draw lines sequence (using gl lines)
+---@field DrawLineStrip fun(points: rl.Vector2[], color: rl.Color)
+--- Draw line segment cubic-bezier in-out interpolation
+---@field DrawLineBezier fun(startPos: rl.Vector2, endPos: rl.Vector2, thick: number, color: rl.Color)
+---@field DrawLineDashed fun(startPos: rl.Vector2, endPos: rl.Vector2, dashSize: integer, spaceSize: integer, color: rl.Color)
+--- Draw a color-filled triangle, counter-clockwise vertex order
+---@field DrawTriangle fun(v1: rl.Vector2, v2: rl.Vector2, v3: rl.Vector2, color: rl.Color)
+--- Draw triangle with interpolated colors, counter-clockwise vertex/color order
+---@field DrawTriangleGradient fun(v1: rl.Vector2, v2: rl.Vector2, v3: rl.Vector2, c1: rl.Color, c2: rl.Color, c3: rl.Color)
+--- Draw triangle outline, counter-clockwise vertex order
+---@field DrawTriangleLines fun(v1: rl.Vector2, v2: rl.Vector2, v3: rl.Vector2, color: rl.Color)
+--- Draw triangle outline with line thickness, counter-clockwise vertex order
+---@field DrawTriangleLinesEx fun(v1: rl.Vector2, v2: rl.Vector2, v3: rl.Vector2, thick: number, color: rl.Color)
+--- Draw a triangle fan defined by points (first vertex is the center)
+---@field DrawTriangleFan fun(points: rl.Vector2[], color: rl.Color)
+--- Draw a triangle strip defined by points
+---@field DrawTriangleStrip fun(points: rl.Vector2[], color: rl.Color)
+---@field DrawRectangle fun(posX: integer, posY: integer, width: integer, height: integer, color: rl.Color)
+---@field DrawRectangleV fun(position: rl.Vector2, size: rl.Vector2, color: rl.Color)
+---@field DrawRectangleRec fun(rec: rl.Rectangle, color: rl.Color)
+--- Draw a color-filled rectangle with pro parameters
+---@field DrawRectanglePro fun(rec: rl.Rectangle, origin: rl.Vector2, rotation: number, color: rl.Color)
+--- Draw a vertical-gradient-filled rectangle
+---@field DrawRectangleGradientV fun(posX: integer, posY: integer, width: integer, height: integer, top: rl.Color, bottom: rl.Color)
+--- Draw a horizontal-gradient-filled rectangle
+---@field DrawRectangleGradientH fun(posX: integer, posY: integer, width: integer, height: integer, left: rl.Color, right: rl.Color)
+--- Draw a gradient-filled rectangle with custom vertex colors, counter-clockwise color order
+---@field DrawRectangleGradientEx fun(rec: rl.Rectangle, col1: rl.Color, col2: rl.Color, col3: rl.Color, col4: rl.Color)
+--- Draw rectangle outline
+---@field DrawRectangleLines fun(posX: integer, posY: integer, width: integer, height: integer, color: rl.Color)
+--- Draw rectangle outline with line thickness
+---@field DrawRectangleLinesEx fun(rec: rl.Rectangle, thick: number, color: rl.Color)
+--- Draw rectangle with rounded edges
+---@field DrawRectangleRounded fun(rec: rl.Rectangle, roundness: number, segments: integer, color: rl.Color)
+--- Draw rectangle lines with rounded edges
+---@field DrawRectangleRoundedLines fun(rec: rl.Rectangle, roundness: number, segments: integer, color: rl.Color)
+--- Draw rectangle lines with rounded edges outline and line thickness
+---@field DrawRectangleRoundedLinesEx fun(rec: rl.Rectangle, roundness: number, segments: integer, thick: number, color: rl.Color)
+--- Draw a polygon of n sides
+---@field DrawPoly fun(center: rl.Vector2, sides: integer, radius: number, rotation: number, color: rl.Color)
+--- Draw a polygon outline of n sides
+---@field DrawPolyLines fun(center: rl.Vector2, sides: integer, radius: number, rotation: number, color: rl.Color)
+--- Draw a polygon outline of n sides with line thickness
+---@field DrawPolyLinesEx fun(center: rl.Vector2, sides: integer, radius: number, rotation: number, thick: number, color: rl.Color)
+---@field DrawCircle fun(centerX: integer, centerY: integer, radius: number, color: rl.Color)
+---@field DrawCircleV fun(center: rl.Vector2, radius: number, color: rl.Color)
+---@field DrawCircleGradient fun(center: rl.Vector2, radius: number, inner: rl.Color, outer: rl.Color)
+--- Draw a piece of a circle
+---@field DrawCircleSector fun(center: rl.Vector2, radius: number, startAngle: number, endAngle: number, segments: integer, color: rl.Color)
+--- Draw circle sector outline
+---@field DrawCircleSectorLines fun(center: rl.Vector2, radius: number, startAngle: number, endAngle: number, segments: integer, color: rl.Color)
+--- Draw circle sector outline with thickness
+---@field DrawCircleSectorLinesEx fun(center: rl.Vector2, radius: number, startAngle: number, endAngle: number, segments: integer, thick: number, color: rl.Color)
+--- Draw circle outline
+---@field DrawCircleLines fun(centerX: integer, centerY: integer, radius: number, color: rl.Color)
+--- Draw circle outline (Vector version)
+---@field DrawCircleLinesV fun(center: rl.Vector2, radius: number, color: rl.Color)
+--- Draw circle outline with line thickness
+---@field DrawCircleLinesEx fun(center: rl.Vector2, radius: number, thick: number, color: rl.Color)
+---@field DrawEllipse fun(centerX: integer, centerY: integer, radiusH: number, radiusV: number, color: rl.Color)
+---@field DrawEllipseV fun(center: rl.Vector2, radiusH: number, radiusV: number, color: rl.Color)
+--- Draw ellipse outline
+---@field DrawEllipseLines fun(centerX: integer, centerY: integer, radiusH: number, radiusV: number, color: rl.Color)
+--- Draw ellipse outline (Vector version)
+---@field DrawEllipseLinesV fun(center: rl.Vector2, radiusH: number, radiusV: number, color: rl.Color)
+--- Draw ellipse outline with line thickness
+---@field DrawEllipseLinesEx fun(center: rl.Vector2, radiusH: number, radiusV: number, thick: number, color: rl.Color)
+---@field DrawRing fun(center: rl.Vector2, innerRadius: number, outerRadius: number, startAngle: number, endAngle: number, segments: integer, color: rl.Color)
+--- Draw ring outline
+---@field DrawRingLines fun(center: rl.Vector2, innerRadius: number, outerRadius: number, startAngle: number, endAngle: number, segments: integer, color: rl.Color)
+--- Draw ring outline with line thickness
+---@field DrawRingLinesEx fun(center: rl.Vector2, innerRadius: number, outerRadius: number, startAngle: number, endAngle: number, segments: integer, thick: number, color: rl.Color)
+--- Draw spline: Linear, minimum 2 points
+---@field DrawSplineLinear fun(points: rl.Vector2[], thick: number, color: rl.Color)
+--- Draw spline: B-Spline, minimum 4 points
+---@field DrawSplineBasis fun(points: rl.Vector2[], thick: number, color: rl.Color)
+--- Draw spline: Catmull-Rom, minimum 4 points
+---@field DrawSplineCatmullRom fun(points: rl.Vector2[], thick: number, color: rl.Color)
+--- Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]
+---@field DrawSplineBezierQuadratic fun(points: rl.Vector2[], thick: number, color: rl.Color)
+--- Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]
+---@field DrawSplineBezierCubic fun(points: rl.Vector2[], thick: number, color: rl.Color)
+--- Draw spline segment: Linear, 2 points
+---@field DrawSplineSegmentLinear fun(p1: rl.Vector2, p2: rl.Vector2, thick: number, color: rl.Color)
+--- Draw spline segment: B-Spline, 4 points
+---@field DrawSplineSegmentBasis fun(p1: rl.Vector2, p2: rl.Vector2, p3: rl.Vector2, p4: rl.Vector2, thick: number, color: rl.Color)
+--- Draw spline segment: Catmull-Rom, 4 points
+---@field DrawSplineSegmentCatmullRom fun(p1: rl.Vector2, p2: rl.Vector2, p3: rl.Vector2, p4: rl.Vector2, thick: number, color: rl.Color)
+--- Draw spline segment: Quadratic Bezier, 2 points, 1 control point
+---@field DrawSplineSegmentBezierQuadratic fun(p1: rl.Vector2, c2: rl.Vector2, p3: rl.Vector2, thick: number, color: rl.Color)
+--- Draw spline segment: Cubic Bezier, 2 points, 2 control points
+---@field DrawSplineSegmentBezierCubic fun(p1: rl.Vector2, c2: rl.Vector2, c3: rl.Vector2, p4: rl.Vector2, thick: number, color: rl.Color)
+--- Get (evaluate) spline point: Linear
+---@field GetSplinePointLinear fun(startPos: rl.Vector2, endPos: rl.Vector2, t: number): rl.Vector2
+--- Get (evaluate) spline point: B-Spline
+---@field GetSplinePointBasis fun(p1: rl.Vector2, p2: rl.Vector2, p3: rl.Vector2, p4: rl.Vector2, t: number): rl.Vector2
+--- Get (evaluate) spline point: Catmull-Rom
+---@field GetSplinePointCatmullRom fun(p1: rl.Vector2, p2: rl.Vector2, p3: rl.Vector2, p4: rl.Vector2, t: number): rl.Vector2
+--- Get (evaluate) spline point: Quadratic Bezier
+---@field GetSplinePointBezierQuadratic fun(p1: rl.Vector2, c2: rl.Vector2, p3: rl.Vector2, t: number): rl.Vector2
+--- Get (evaluate) spline point: Cubic Bezier
+---@field GetSplinePointBezierCubic fun(p1: rl.Vector2, c2: rl.Vector2, c3: rl.Vector2, p4: rl.Vector2, t: number): rl.Vector2
+--- Check collision between two rectangles
+---@field CheckCollisionRecs fun(rec1: rl.Rectangle, rec2: rl.Rectangle): boolean
+--- Check collision between two circles
+---@field CheckCollisionCircles fun(center1: rl.Vector2, radius1: number, center2: rl.Vector2, radius2: number): boolean
+--- Check collision between circle and rectangle
+---@field CheckCollisionCircleRec fun(center: rl.Vector2, radius: number, rec: rl.Rectangle): boolean
+--- Check if circle collides with a line created between two points [p1] and [p2]
+---@field CheckCollisionCircleLine fun(center: rl.Vector2, radius: number, p1: rl.Vector2, p2: rl.Vector2): boolean
+--- Check if point is inside rectangle
+---@field CheckCollisionPointRec fun(point: rl.Vector2, rec: rl.Rectangle): boolean
+--- Check if point is inside circle
+---@field CheckCollisionPointCircle fun(point: rl.Vector2, center: rl.Vector2, radius: number): boolean
+--- Check if point is inside a triangle
+---@field CheckCollisionPointTriangle fun(point: rl.Vector2, p1: rl.Vector2, p2: rl.Vector2, p3: rl.Vector2): boolean
+--- Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
+---@field CheckCollisionPointLine fun(point: rl.Vector2, p1: rl.Vector2, p2: rl.Vector2, threshold: integer): boolean
+--- Check if point is within a polygon described by array of vertices
+---@field CheckCollisionPointPoly fun(point: rl.Vector2, points: rl.Vector2[]): boolean
+--- Check the collision between two lines defined by two points each, returns collision point by reference
+--- Returns the collision point as the second value when the lines collide.
+---@field CheckCollisionLines fun(startPos1: rl.Vector2, endPos1: rl.Vector2, startPos2: rl.Vector2, endPos2: rl.Vector2): boolean, rl.Vector2?
+--- Get collision rectangle for two rectangles collision
+---@field GetCollisionRec fun(rec1: rl.Rectangle, rec2: rl.Rectangle): rl.Rectangle
+---@field SetGesturesEnabled fun(flags: integer)
+---@field IsGestureDetected fun(gesture: integer): boolean
+--- Get latest detected gesture
+---@field GetGestureDetected fun(): integer
+--- Get gesture hold time in seconds
+---@field GetGestureHoldDuration fun(): number
+---@field GetGestureDragVector fun(): rl.Vector2
+---@field GetGestureDragAngle fun(): number
+--- Get gesture pinch delta
+---@field GetGesturePinchVector fun(): rl.Vector2
+---@field GetGesturePinchAngle fun(): number
+--- Draw a line in 3D world space
+---@field DrawLine3D fun(startPos: rl.Vector3, endPos: rl.Vector3, color: rl.Color)
+--- Draw a point in 3D space, actually a small line
+---@field DrawPoint3D fun(position: rl.Vector3, color: rl.Color)
+--- Draw a circle in 3D world space
+---@field DrawCircle3D fun(center: rl.Vector3, radius: number, rotationAxis: rl.Vector3, rotationAngle: number, color: rl.Color)
+--- Draw a color-filled triangle, counter-clockwise vertex order
+---@field DrawTriangle3D fun(v1: rl.Vector3, v2: rl.Vector3, v3: rl.Vector3, color: rl.Color)
+--- Draw a triangle strip defined by points
+---@field DrawTriangleStrip3D fun(points: rl.Vector3[], color: rl.Color)
+--- Draw cube
+---@field DrawCube fun(position: rl.Vector3, width: number, height: number, length: number, color: rl.Color)
+--- Draw cube (Vector version)
+---@field DrawCubeV fun(position: rl.Vector3, size: rl.Vector3, color: rl.Color)
+--- Draw cube wires
+---@field DrawCubeWires fun(position: rl.Vector3, width: number, height: number, length: number, color: rl.Color)
+--- Draw cube wires (Vector version)
+---@field DrawCubeWiresV fun(position: rl.Vector3, size: rl.Vector3, color: rl.Color)
+--- Draw sphere
+---@field DrawSphere fun(centerPos: rl.Vector3, radius: number, color: rl.Color)
+--- Draw sphere with defined rings and slices
+---@field DrawSphereEx fun(centerPos: rl.Vector3, radius: number, rings: integer, slices: integer, color: rl.Color)
+--- Draw sphere wires
+---@field DrawSphereWires fun(centerPos: rl.Vector3, radius: number, rings: integer, slices: integer, color: rl.Color)
+--- Draw a cylinder/cone
+---@field DrawCylinder fun(position: rl.Vector3, radiusTop: number, radiusBottom: number, height: number, sides: integer, color: rl.Color)
+--- Draw a cylinder with base at startPos and top at endPos
+---@field DrawCylinderEx fun(startPos: rl.Vector3, endPos: rl.Vector3, startRadius: number, endRadius: number, sides: integer, color: rl.Color)
+--- Draw a cylinder/cone wires
+---@field DrawCylinderWires fun(position: rl.Vector3, radiusTop: number, radiusBottom: number, height: number, sides: integer, color: rl.Color)
+--- Draw a cylinder wires with base at startPos and top at endPos
+---@field DrawCylinderWiresEx fun(startPos: rl.Vector3, endPos: rl.Vector3, startRadius: number, endRadius: number, sides: integer, color: rl.Color)
+--- Draw a capsule with the center of its sphere caps at startPos and endPos
+---@field DrawCapsule fun(startPos: rl.Vector3, endPos: rl.Vector3, radius: number, rings: integer, slices: integer, color: rl.Color)
+--- Draw capsule wireframe with the center of its sphere caps at startPos and endPos
+---@field DrawCapsuleWires fun(startPos: rl.Vector3, endPos: rl.Vector3, radius: number, rings: integer, slices: integer, color: rl.Color)
+--- Draw a plane XZ
+---@field DrawPlane fun(centerPos: rl.Vector3, size: rl.Vector2, color: rl.Color)
+--- Draw a ray line
+---@field DrawRay fun(ray: rl.Ray, color: rl.Color)
+--- Draw a grid (centered at (0, 0, 0))
+---@field DrawGrid fun(slices: integer, spacing: number)
+--- Load model from files (meshes and materials)
+---@field LoadModel fun(fileName: string): rl.Model?
+--- Load model from generated mesh (default material)
+---@field LoadModelFromMesh fun(mesh: rl.Mesh): rl.Model
+--- Draw bounding box (wires)
+---@field DrawBoundingBox fun(box: rl.BoundingBox, color: rl.Color)
+--- Generate polygonal mesh
+---@field GenMeshPoly fun(sides: integer, radius: number): rl.Mesh
+--- Generate plane mesh (with subdivisions)
+---@field GenMeshPlane fun(width: number, length: number, resX: integer, resZ: integer): rl.Mesh
+--- Generate cuboid mesh
+---@field GenMeshCube fun(width: number, height: number, length: number): rl.Mesh
+--- Generate sphere mesh (standard sphere)
+---@field GenMeshSphere fun(radius: number, rings: integer, slices: integer): rl.Mesh
+--- Generate half-sphere mesh (no bottom cap)
+---@field GenMeshHemiSphere fun(radius: number, rings: integer, slices: integer): rl.Mesh
+--- Generate cylinder mesh
+---@field GenMeshCylinder fun(radius: number, height: number, slices: integer): rl.Mesh
+--- Generate cone/pyramid mesh
+---@field GenMeshCone fun(radius: number, height: number, slices: integer): rl.Mesh
+--- Generate torus mesh
+---@field GenMeshTorus fun(radius: number, size: number, radSeg: integer, sides: integer): rl.Mesh
+--- Generate trefoil knot mesh
+---@field GenMeshKnot fun(radius: number, size: number, radSeg: integer, sides: integer): rl.Mesh
+--- Generate heightmap mesh from image data
+---@field GenMeshHeightmap fun(heightmap: rl.Image, size: rl.Vector3): rl.Mesh
+--- Generate cubes-based map mesh from image data
+---@field GenMeshCubicmap fun(cubicmap: rl.Image, cubeSize: rl.Vector3): rl.Mesh
+--- Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
+---@field LoadMaterialDefault fun(): rl.Material
+--- Check collision between two spheres
+---@field CheckCollisionSpheres fun(center1: rl.Vector3, radius1: number, center2: rl.Vector3, radius2: number): boolean
+--- Check collision between two bounding boxes
+---@field CheckCollisionBoxes fun(box1: rl.BoundingBox, box2: rl.BoundingBox): boolean
+--- Check collision between box and sphere
+---@field CheckCollisionBoxSphere fun(box: rl.BoundingBox, center: rl.Vector3, radius: number): boolean
+--- Get collision info between ray and sphere
+---@field GetRayCollisionSphere fun(ray: rl.Ray, center: rl.Vector3, radius: number): rl.RayCollision
+--- Get collision info between ray and box
+---@field GetRayCollisionBox fun(ray: rl.Ray, box: rl.BoundingBox): rl.RayCollision
+--- Get collision info between ray and mesh
+---@field GetRayCollisionMesh fun(ray: rl.Ray, mesh: rl.Mesh, transform: rl.Matrix): rl.RayCollision
+--- Get collision info between ray and triangle
+---@field GetRayCollisionTriangle fun(ray: rl.Ray, p1: rl.Vector3, p2: rl.Vector3, p3: rl.Vector3): rl.RayCollision
+--- Get collision info between ray and quad
+---@field GetRayCollisionQuad fun(ray: rl.Ray, p1: rl.Vector3, p2: rl.Vector3, p3: rl.Vector3, p4: rl.Vector3): rl.RayCollision
+--- Load materials from model
+---@field LoadMaterials fun(fileName: string): rl.Materials?
+--- Load model animations from file
+---@field LoadModelAnimations fun(fileName: string): rl.ModelAnimations?
+--- Initialize audio device and context
+---@field InitAudioDevice fun()
+--- Close the audio device and context
+---@field CloseAudioDevice fun()
+--- Check if audio device has been initialized successfully
+---@field IsAudioDeviceReady fun(): boolean
+--- Set master volume (listener)
+---@field SetMasterVolume fun(volume: number)
+--- Get master volume (listener)
+---@field GetMasterVolume fun(): number
+--- Load wave data from file
+---@field LoadWave fun(fileName: string): rl.Wave?
+--- Load wave from memory buffer, fileType refers to extension: i.e. '.wav'
+---@field LoadWaveFromMemory fun(fileType: string, data: string): rl.Wave?
+--- Load sound from file
+---@field LoadSound fun(fileName: string): rl.Sound?
+--- Load sound from wave data
+---@field LoadSoundFromWave fun(wave: rl.Wave): rl.Sound?
+--- Load sound alias, new sound that shares the same sample data as the source sound, does not own the sound data
+---@field LoadSoundAlias fun(source: rl.Sound): rl.Sound?
+--- Load music stream from file
+---@field LoadMusicStream fun(fileName: string): rl.Music?
+--- Load music stream from data
+---@field LoadMusicStreamFromMemory fun(fileType: string, data: string): rl.Music?
+--- Load audio stream (to stream raw audio pcm data)
+---@field LoadAudioStream fun(sampleRate: integer, sampleSize: integer, channels: integer): rl.AudioStream?
+--- Default size for new audio streams
+---@field SetAudioStreamBufferSizeDefault fun(size: integer)
+--- Attach audio processor to the whole mixed pipeline; must not call raylib.
+---@field AttachAudioMixedProcessor fun(callback: fun(data: string, frames: integer): string)
+--- Detach audio processor from the whole mixed pipeline
+---@field DetachAudioMixedProcessor fun(callback: fun(data: string, frames: integer): string)
+--- Load shader from files and bind default locations
+---@field LoadShader fun(vertexFileName?: string, fragmentFileName?: string): rl.Shader?
+--- Load shader from code strings and bind default locations
+---@field LoadShaderFromMemory fun(vertexCode?: string, fragmentCode?: string): rl.Shader?
+--- Load VR stereo config for VR simulator device parameters
+---@field LoadVrStereoConfig fun(device: rl.VrDeviceInfo): rl.VrStereoConfig
+--- Load font data for further use
+---@field LoadFontData fun(fileData: string, fontSize: integer, codepoints: integer[]?, type: integer): rl.GlyphInfoArray?
+--- Generate image font atlas using chars info
+---@field GenImageFontAtlas fun(glyphs: rl.GlyphInfoArray, fontSize: integer, padding: integer, packMethod: integer): rl.Image?, rl.Rectangle[]
+--- Set custom trace log
+---@field SetTraceLogCallback fun(callback?: fun(level: integer, text: string))
+--- Set custom file binary data loader
+---@field SetLoadFileDataCallback fun(callback?: fun(fileName: string): string?)
+--- Set custom file binary data saver
+---@field SetSaveFileDataCallback fun(callback?: fun(fileName: string, data: string): boolean)
+--- Set custom file text data loader
+---@field SetLoadFileTextCallback fun(callback?: fun(fileName: string): string?)
+--- Set custom file text data saver
+---@field SetSaveFileTextCallback fun(callback?: fun(fileName: string, text: string): boolean)
+--- Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
+---@field LoadAutomationEventList fun(fileName?: string): rl.AutomationEventList
+--- Set automation event list to record to
+---@field SetAutomationEventList fun(list?: rl.AutomationEventList)
+--- Set automation event internal base frame to start recording
+---@field SetAutomationEventBaseFrame fun(frame: integer)
+--- Start recording automation events (AutomationEventList must be set)
+---@field StartAutomationEventRecording fun()
+--- Stop recording automation events
+---@field StopAutomationEventRecording fun()
+--- Play a recorded automation event
+---@field PlayAutomationEvent fun(event: rl.AutomationEvent)
+rl = {}
+
+--- Vector2, 2 components
+---
+--- Arithmetic is provided by operators bound to these raymath functions:
+---
+---   `add` : Vector2Add, Vector2AddValue
+---   `sub` : Vector2Subtract, Vector2SubtractValue
+---   `mul` : Vector2Multiply, Vector2Scale
+---   `div` : Vector2Divide
+---   `unm` : Vector2Negate
+---   `eq`  : Vector2Equals
+---@class rl.Vector2
+---@field x number
+---@field y number
+---@operator add(rl.Vector2): rl.Vector2
+---@operator add(number): rl.Vector2
+---@operator sub(rl.Vector2): rl.Vector2
+---@operator sub(number): rl.Vector2
+---@operator mul(rl.Vector2): rl.Vector2
+---@operator mul(number): rl.Vector2
+---@operator div(rl.Vector2): rl.Vector2
+---@operator unm: rl.Vector2
+--- Calculate the signed angle from v1 to v2, relative to the origin (0, 0)
+--- NOTE: Coordinate system convention: positive X right, positive Y down
+--- positive angles appear clockwise, and negative angles appear counterclockwise
+---@field angle fun(self: rl.Vector2, v2: rl.Vector2): number
+---@field clamp fun(self: rl.Vector2, min: rl.Vector2, max: rl.Vector2): rl.Vector2
+--- Clamp the magnitude of the vector between two min and max values
+---@field clampValue fun(self: rl.Vector2, min: number, max: number): rl.Vector2
+---@field crossProduct fun(self: rl.Vector2, v2: rl.Vector2): number
+---@field distance fun(self: rl.Vector2, v2: rl.Vector2): number
+---@field distanceSqr fun(self: rl.Vector2, v2: rl.Vector2): number
+---@field dotProduct fun(self: rl.Vector2, v2: rl.Vector2): number
+---@field invert fun(self: rl.Vector2): rl.Vector2
+---@field length fun(self: rl.Vector2): number
+---@field lengthSqr fun(self: rl.Vector2): number
+---@field lerp fun(self: rl.Vector2, v2: rl.Vector2, amount: number): rl.Vector2
+--- NOTE: Parameters need to be normalized
+---@field lineAngle fun(self: rl.Vector2, v2: rl.Vector2): number
+---@field max fun(self: rl.Vector2, v2: rl.Vector2): rl.Vector2
+---@field min fun(self: rl.Vector2, v2: rl.Vector2): rl.Vector2
+---@field moveTowards fun(self: rl.Vector2, target: rl.Vector2, maxDistance: number): rl.Vector2
+---@field normalize fun(self: rl.Vector2): rl.Vector2
+---@field reflect fun(self: rl.Vector2, normal: rl.Vector2): rl.Vector2
+--- Compute the direction of a refracted ray
+--- v: normalized direction of the incoming ray
+--- n: normalized normal vector of the interface of two optical media
+--- r: ratio of the refractive index of the medium from where the ray comes
+---    to the refractive index of the medium on the other side of the surface
+---@field refract fun(self: rl.Vector2, n: rl.Vector2, r: number): rl.Vector2
+---@field rotate fun(self: rl.Vector2, angle: number): rl.Vector2
+---@field transform fun(self: rl.Vector2, mat: rl.Matrix): rl.Vector2
+
+--- Vector3, 3 components
+---
+--- Arithmetic is provided by operators bound to these raymath functions:
+---
+---   `add` : Vector3Add, Vector3AddValue
+---   `sub` : Vector3Subtract, Vector3SubtractValue
+---   `mul` : Vector3Multiply, Vector3Scale
+---   `div` : Vector3Divide
+---   `unm` : Vector3Negate
+---   `eq`  : Vector3Equals
+---@class rl.Vector3
+---@field x number
+---@field y number
+---@field z number
+---@operator add(rl.Vector3): rl.Vector3
+---@operator add(number): rl.Vector3
+---@operator sub(rl.Vector3): rl.Vector3
+---@operator sub(number): rl.Vector3
+---@operator mul(rl.Vector3): rl.Vector3
+---@operator mul(number): rl.Vector3
+---@operator div(rl.Vector3): rl.Vector3
+---@operator unm: rl.Vector3
+---@field angle fun(self: rl.Vector3, v2: rl.Vector3): number
+--- Compute barycenter coordinates (u, v, w) for point p with respect to triangle (a, b, c)
+--- NOTE: Assumes P is on the plane of the triangle
+---@field barycenter fun(self: rl.Vector3, a: rl.Vector3, b: rl.Vector3, c: rl.Vector3): rl.Vector3
+---@field clamp fun(self: rl.Vector3, min: rl.Vector3, max: rl.Vector3): rl.Vector3
+--- Clamp the magnitude of the vector between two values
+---@field clampValue fun(self: rl.Vector3, min: number, max: number): rl.Vector3
+---@field crossProduct fun(self: rl.Vector3, v2: rl.Vector3): rl.Vector3
+--- Calculate cubic hermite interpolation between two vectors and their tangents
+--- as described in the GLTF 2.0 specification: https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#interpolation-cubic
+---@field cubicHermite fun(self: rl.Vector3, tangent1: rl.Vector3, v2: rl.Vector3, tangent2: rl.Vector3, amount: number): rl.Vector3
+---@field distance fun(self: rl.Vector3, v2: rl.Vector3): number
+---@field distanceSqr fun(self: rl.Vector3, v2: rl.Vector3): number
+---@field dotProduct fun(self: rl.Vector3, v2: rl.Vector3): number
+---@field invert fun(self: rl.Vector3): rl.Vector3
+---@field length fun(self: rl.Vector3): number
+---@field lengthSqr fun(self: rl.Vector3): number
+---@field lerp fun(self: rl.Vector3, v2: rl.Vector3, amount: number): rl.Vector3
+---@field max fun(self: rl.Vector3, v2: rl.Vector3): rl.Vector3
+---@field min fun(self: rl.Vector3, v2: rl.Vector3): rl.Vector3
+---@field moveTowards fun(self: rl.Vector3, target: rl.Vector3, maxDistance: number): rl.Vector3
+---@field normalize fun(self: rl.Vector3): rl.Vector3
+--- Make vectors normalized and orthogonal to each other
+--- Gram-Schmidt function implementation
+---@field orthoNormalize fun(self: rl.Vector3, v2: rl.Vector3)
+---@field perpendicular fun(self: rl.Vector3): rl.Vector3
+---@field project fun(self: rl.Vector3, v2: rl.Vector3): rl.Vector3
+---@field reflect fun(self: rl.Vector3, normal: rl.Vector3): rl.Vector3
+--- Compute the direction of a refracted ray
+--- v: normalized direction of the incoming ray
+--- n: normalized normal vector of the interface of two optical media
+--- r: ratio of the refractive index of the medium from where the ray comes
+---    to the refractive index of the medium on the other side of the surface
+---@field refract fun(self: rl.Vector3, n: rl.Vector3, r: number): rl.Vector3
+---@field reject fun(self: rl.Vector3, v2: rl.Vector3): rl.Vector3
+---@field rotateByAxisAngle fun(self: rl.Vector3, axis: rl.Vector3, angle: number): rl.Vector3
+---@field rotateByQuaternion fun(self: rl.Vector3, q: rl.Quaternion): rl.Vector3
+---@field transform fun(self: rl.Vector3, mat: rl.Matrix): rl.Vector3
+--- Projects a Vector3 from screen space into object space
+---@field unproject fun(self: rl.Vector3, projection: rl.Matrix, view: rl.Matrix): rl.Vector3
+
+--- Vector4, 4 components
+---
+--- Arithmetic is provided by operators bound to these raymath functions:
+---
+---   `add` : Vector4Add, Vector4AddValue
+---   `sub` : Vector4Subtract, Vector4SubtractValue
+---   `mul` : Vector4Multiply, Vector4Scale
+---   `div` : Vector4Divide
+---   `unm` : Vector4Negate
+---   `eq`  : Vector4Equals
+---@class rl.Vector4
+---@field x number
+---@field y number
+---@field z number
+---@field w number
+---@operator add(rl.Vector4): rl.Vector4
+---@operator add(number): rl.Vector4
+---@operator sub(rl.Vector4): rl.Vector4
+---@operator sub(number): rl.Vector4
+---@operator mul(rl.Vector4): rl.Vector4
+---@operator mul(number): rl.Vector4
+---@operator div(rl.Vector4): rl.Vector4
+---@operator unm: rl.Vector4
+---@field distance fun(self: rl.Vector4, v2: rl.Vector4): number
+---@field distanceSqr fun(self: rl.Vector4, v2: rl.Vector4): number
+---@field dotProduct fun(self: rl.Vector4, v2: rl.Vector4): number
+---@field invert fun(self: rl.Vector4): rl.Vector4
+---@field length fun(self: rl.Vector4): number
+---@field lengthSqr fun(self: rl.Vector4): number
+---@field lerp fun(self: rl.Vector4, v2: rl.Vector4, amount: number): rl.Vector4
+---@field max fun(self: rl.Vector4, v2: rl.Vector4): rl.Vector4
+---@field min fun(self: rl.Vector4, v2: rl.Vector4): rl.Vector4
+---@field moveTowards fun(self: rl.Vector4, target: rl.Vector4, maxDistance: number): rl.Vector4
+---@field normalize fun(self: rl.Vector4): rl.Vector4
+
+--- Quaternion, 4 components
+---
+--- Arithmetic is provided by operators bound to these raymath functions:
+---
+---   `add` : QuaternionAdd, QuaternionAddValue
+---   `sub` : QuaternionSubtract, QuaternionSubtractValue
+---   `mul` : QuaternionMultiply, QuaternionScale
+---   `div` : QuaternionDivide
+---   `eq`  : QuaternionEquals
+---@class rl.Quaternion
+---@field x number
+---@field y number
+---@field z number
+---@field w number
+---@operator add(rl.Quaternion): rl.Quaternion
+---@operator add(number): rl.Quaternion
+---@operator sub(rl.Quaternion): rl.Quaternion
+---@operator sub(number): rl.Quaternion
+---@operator mul(rl.Quaternion): rl.Quaternion
+---@operator mul(number): rl.Quaternion
+---@operator mul(rl.Matrix): rl.Quaternion
+---@operator div(rl.Quaternion): rl.Quaternion
+--- Calculate quaternion cubic spline interpolation using Cubic Hermite Spline algorithm
+--- as described in the GLTF 2.0 specification: https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#interpolation-cubic
+---@field cubicHermiteSpline fun(self: rl.Quaternion, outTangent1: rl.Quaternion, q2: rl.Quaternion, inTangent2: rl.Quaternion, t: number): rl.Quaternion
+---@field invert fun(self: rl.Quaternion): rl.Quaternion
+---@field length fun(self: rl.Quaternion): number
+---@field lerp fun(self: rl.Quaternion, q2: rl.Quaternion, amount: number): rl.Quaternion
+--- Calculate slerp-optimized interpolation between two quaternions
+---@field nlerp fun(self: rl.Quaternion, q2: rl.Quaternion, amount: number): rl.Quaternion
+---@field normalize fun(self: rl.Quaternion): rl.Quaternion
+--- Calculates spherical linear interpolation between two quaternions
+---@field slerp fun(self: rl.Quaternion, q2: rl.Quaternion, amount: number): rl.Quaternion
+---@field toAxisAngle fun(self: rl.Quaternion): rl.Vector3, number
+--- NOTE: Angles are returned in a Vector3 struct in radians
+---@field toEuler fun(self: rl.Quaternion): rl.Vector3
+---@field toMatrix fun(self: rl.Quaternion): rl.Matrix
+---@field transform fun(self: rl.Quaternion, mat: rl.Matrix): rl.Quaternion
+
+---@class rl.QuaternionConstructor
+---@operator call(...): rl.Quaternion
+--- NOTE: Angle must be provided in radians
+---@field fromAxisAngle fun(axis: rl.Vector3, angle: number): rl.Quaternion
+--- NOTE: Rotation order is ZYX
+---@field fromEuler fun(pitch: number, yaw: number, roll: number): rl.Quaternion
+---@field fromMatrix fun(mat: rl.Matrix): rl.Quaternion
+---@field fromVector3ToVector3 fun(from: rl.Vector3, to: rl.Vector3): rl.Quaternion
+---@field identity fun(): rl.Quaternion
+
+--- Matrix type (OpenGL style 4x4 - right handed, column major)
+---
+--- Arithmetic is provided by operators bound to these raymath functions:
+---
+---   `add` : MatrixAdd
+---   `sub` : MatrixSubtract
+---   `mul` : MatrixMultiply, MatrixMultiplyValue
+---@class rl.Matrix
+---@field m0 number # Matrix first row (4 components)
+---@field m1 number # Matrix second row (4 components)
+---@field m2 number # Matrix third row (4 components)
+---@field m3 number # Matrix fourth row (4 components)
+---@field m4 number # Matrix first row (4 components)
+---@field m5 number # Matrix second row (4 components)
+---@field m6 number # Matrix third row (4 components)
+---@field m7 number # Matrix fourth row (4 components)
+---@field m8 number # Matrix first row (4 components)
+---@field m9 number # Matrix second row (4 components)
+---@field m10 number # Matrix third row (4 components)
+---@field m11 number # Matrix fourth row (4 components)
+---@field m12 number # Matrix first row (4 components)
+---@field m13 number # Matrix second row (4 components)
+---@field m14 number # Matrix third row (4 components)
+---@field m15 number # Matrix fourth row (4 components)
+---@operator add(rl.Matrix): rl.Matrix
+---@operator sub(rl.Matrix): rl.Matrix
+---@operator mul(rl.Matrix): rl.Matrix
+---@operator mul(rl.Vector2): rl.Vector2
+---@operator mul(rl.Vector3): rl.Vector3
+---@operator mul(number): rl.Matrix
+--- Decompose a transformation matrix into its rotational, translational and scaling components and remove shear
+---@field decompose fun(self: rl.Matrix): rl.Vector3, rl.Quaternion, rl.Vector3
+---@field determinant fun(self: rl.Matrix): number
+---@field invert fun(self: rl.Matrix): rl.Matrix
+--- Get the sum of the values along the diagonal
+---@field trace fun(self: rl.Matrix): number
+---@field transpose fun(self: rl.Matrix): rl.Matrix
+
+---@class rl.MatrixConstructor
+---@operator call(...): rl.Matrix
+---@field compose fun(translation: rl.Vector3, rotation: rl.Quaternion, scale: rl.Vector3): rl.Matrix
+---@field frustum fun(left: number, right: number, bottom: number, top: number, nearPlane: number, farPlane: number): rl.Matrix
+---@field identity fun(): rl.Matrix
+---@field lookAt fun(eye: rl.Vector3, target: rl.Vector3, up: rl.Vector3): rl.Matrix
+---@field ortho fun(left: number, right: number, bottom: number, top: number, nearPlane: number, farPlane: number): rl.Matrix
+--- NOTE: Fovy angle must be provided in radians
+---@field perspective fun(fovY: number, aspect: number, nearPlane: number, farPlane: number): rl.Matrix
+--- NOTE: Angle should be provided in radians
+---@field rotate fun(axis: rl.Vector3, angle: number): rl.Matrix
+--- NOTE: Angle must be provided in radians
+---@field rotateX fun(angle: number): rl.Matrix
+--- NOTE: Angle must be provided in radians
+---@field rotateXYZ fun(angle: rl.Vector3): rl.Matrix
+--- NOTE: Angle must be provided in radians
+---@field rotateY fun(angle: number): rl.Matrix
+--- NOTE: Angle must be provided in radians
+---@field rotateZ fun(angle: number): rl.Matrix
+--- NOTE: Angle must be provided in radians
+---@field rotateZYX fun(angle: rl.Vector3): rl.Matrix
+---@field scale fun(x: number, y: number, z: number): rl.Matrix
+---@field translate fun(x: number, y: number, z: number): rl.Matrix
+
+--- Color, 4 components, R8G8B8A8 (32bit)
+---
+--- Equality is provided by the operator bound to this raylib function:
+---
+---   `eq`  : ColorIsEqual
+---@class rl.Color
+---@field r integer # Color red value
+---@field g integer # Color green value
+---@field b integer # Color blue value
+---@field a integer # Color alpha value
+--- Get color with alpha applied, alpha goes from 0.0f to 1.0f
+---@field fade fun(self: rl.Color, alpha: number): rl.Color
+--- Get hexadecimal value for a Color (0xRRGGBBAA)
+---@field toInt fun(self: rl.Color): integer
+--- Get Color normalized as float [0..1]
+---@field normalize fun(self: rl.Color): rl.Vector4
+--- Get HSV values for a Color, hue [0..360], saturation/value [0..1]
+---@field toHSV fun(self: rl.Color): rl.Vector3
+--- Get color multiplied with another color
+---@field tint fun(self: rl.Color, tint: rl.Color): rl.Color
+--- Get color with brightness correction, brightness factor goes from -1.0f to 1.0f
+---@field brightness fun(self: rl.Color, factor: number): rl.Color
+--- Get color with contrast correction, contrast values between -1.0f and 1.0f
+---@field contrast fun(self: rl.Color, contrast: number): rl.Color
+--- Get color with alpha applied, alpha goes from 0.0f to 1.0f
+---@field alpha fun(self: rl.Color, alpha: number): rl.Color
+--- Get src alpha-blended into dst color with tint
+---@field alphaBlend fun(self: rl.Color, src: rl.Color, tint: rl.Color): rl.Color
+--- Get color lerp interpolation between two colors, factor [0.0f..1.0f]
+---@field lerp fun(self: rl.Color, color2: rl.Color, factor: number): rl.Color
+
+---@class rl.ColorConstructor
+---@operator call(...): rl.Color
+--- Alias of GetColor.
+---@field fromHex fun(hexValue: integer): rl.Color
+---@field fromHSV fun(hue: number, saturation: number, value: number): rl.Color
+---@field fromNormalized fun(normalized: rl.Vector4): rl.Color
+---@field GetColor fun(hexValue: integer): rl.Color
+
+--- Rectangle, 4 components
+---@class rl.Rectangle
+---@field x number # Rectangle top-left corner position x
+---@field y number # Rectangle top-left corner position y
+---@field width number
+---@field height number
+
+--- Camera, defines position/orientation in 3d space
+---@class rl.Camera3D
+---@field position rl.Vector3 # Camera position
+---@field target rl.Vector3 # Camera target it looks-at
+---@field up rl.Vector3 # Camera up vector (rotation over its axis)
+---@field fovy number # Camera field-of-view aperture in Y (degrees) in perspective, used as near plane height in world units in orthographic
+---@field projection integer # Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+---@field forward fun(self: rl.Camera3D): rl.Vector3
+---@field upVector fun(self: rl.Camera3D): rl.Vector3
+---@field right fun(self: rl.Camera3D): rl.Vector3
+---@field moveForward fun(self: rl.Camera3D, distance: number, moveInWorldPlane: boolean)
+---@field moveUp fun(self: rl.Camera3D, distance: number)
+---@field moveRight fun(self: rl.Camera3D, distance: number, moveInWorldPlane: boolean)
+---@field moveToTarget fun(self: rl.Camera3D, delta: number)
+--- NOTE: Angle must be provided in radians
+---@field yaw fun(self: rl.Camera3D, angle: number, rotateAroundTarget: boolean)
+--- NOTE: Angle must be provided in radians
+---@field pitch fun(self: rl.Camera3D, angle: number, lockView: boolean, rotateAroundTarget: boolean, rotateUp: boolean)
+--- NOTE: Angle must be provided in radians
+---@field roll fun(self: rl.Camera3D, angle: number)
+---@field viewMatrix fun(self: rl.Camera3D): rl.Matrix
+---@field projectionMatrix fun(self: rl.Camera3D, aspect: number): rl.Matrix
+--- Get camera transform matrix (view matrix)
+--- Derived from GetCameraMatrix
+---@field getMatrix fun(self: rl.Camera3D): rl.Matrix
+--- Update camera position for selected mode
+--- Derived from UpdateCamera
+---@field update fun(self: rl.Camera3D, mode: integer)
+--- Update camera movement/rotation
+--- Derived from UpdateCameraPro
+---@field updatePro fun(self: rl.Camera3D, movement: rl.Vector3, rotation: rl.Vector3, zoom: number)
+--- Draw a billboard texture
+--- Derived from DrawBillboard
+---@field drawBillboard fun(self: rl.Camera3D, texture: rl.Texture, position: rl.Vector3, scale: number, tint: rl.Color)
+--- Draw a billboard texture defined by rectangle
+--- Derived from DrawBillboardRec
+---@field drawBillboardRec fun(self: rl.Camera3D, texture: rl.Texture, rec: rl.Rectangle, position: rl.Vector3, size: rl.Vector2, tint: rl.Color)
+--- Draw a billboard texture defined by source rectangle with scaling and rotation
+--- Derived from DrawBillboardPro
+---@field drawBillboardPro fun(self: rl.Camera3D, texture: rl.Texture, rec: rl.Rectangle, position: rl.Vector3, up: rl.Vector3, size: rl.Vector2, origin: rl.Vector2, rotation: number, tint: rl.Color)
+
+--- Camera2D, defines position/orientation in 2d space
+---@class rl.Camera2D
+---@field offset rl.Vector2 # Camera offset (screen space offset from window origin, unscaled by DPI, real pixel size)
+---@field target rl.Vector2 # Camera target (world space target point that is mapped to screen space offset)
+---@field rotation number # Camera rotation in degrees (pivots around target)
+---@field zoom number # Camera zoom (scaling around target), must not be set to 0, set to 1.0f for no scale
+
+--- Ray, ray for raycasting
+---@class rl.Ray
+---@field position rl.Vector3 # Ray position (origin)
+---@field direction rl.Vector3 # Ray direction (normalized)
+
+--- Image, pixel data stored in CPU memory (RAM)
+---@class rl.Image
+---@field width integer # Image base width
+---@field height integer # Image base height
+---@field mipmaps integer # Mipmap levels, 1 by default
+---@field format integer # Data format (PixelFormat type)
+---@field unload fun(self: rl.Image)
+--- Check if an image is valid (data and parameters).
+---@field isValid fun(self: rl.Image): boolean
+---@field export fun(self: rl.Image, fileName: string): boolean
+--- Export image to memory buffer.
+--- fileType: file extension, for example ".png"
+---@field exportToMemory fun(self: rl.Image, fileType: string): string?
+---@field exportAsCode fun(self: rl.Image, fileName: string): boolean
+--- Create an image duplicate (useful for transformations).
+---@field copy fun(self: rl.Image): rl.Image?
+---@field fromImage fun(self: rl.Image, rec: rl.Rectangle): rl.Image?
+--- Create an image from a selected channel of another image (GRAYSCALE).
+--- selectedChannel: channel index (0..3)
+---@field fromChannel fun(self: rl.Image, selectedChannel: integer): rl.Image?
+--- Convert image data to desired format.
+--- newFormat: PixelFormat value
+---@field ImageFormat fun(self: rl.Image, newFormat: integer)
+---@field toPOT fun(self: rl.Image, fill: rl.Color)
+---@field crop fun(self: rl.Image, crop: rl.Rectangle)
+--- Crop image depending on alpha value.
+--- threshold: alpha threshold
+---@field alphaCrop fun(self: rl.Image, threshold: number)
+--- Clear alpha channel to desired color.
+--- threshold: alpha threshold
+---@field alphaClear fun(self: rl.Image, color: rl.Color, threshold: number)
+---@field alphaMask fun(self: rl.Image, alphaMask: rl.Image)
+---@field alphaPremultiply fun(self: rl.Image)
+---@field blurGaussian fun(self: rl.Image, blurSize: integer)
+--- Apply custom square convolution kernel to image.
+--- kernel: square convolution kernel, length must be a perfect square
+---@field kernelConvolution fun(self: rl.Image, kernel: number[])
+---@field resize fun(self: rl.Image, newWidth: integer, newHeight: integer)
+---@field resizeNN fun(self: rl.Image, newWidth: integer, newHeight: integer)
+---@field resizeCanvas fun(self: rl.Image, newWidth: integer, newHeight: integer, offsetX: integer, offsetY: integer, fill: rl.Color)
+---@field ImageMipmaps fun(self: rl.Image)
+--- Dither image data to 16bpp or lower (Floyd-Steinberg dithering).
+--- rBpp: red bits per channel
+--- gBpp: green bits per channel
+--- bBpp: blue bits per channel
+--- aBpp: alpha bits per channel
+---@field dither fun(self: rl.Image, rBpp: integer, gBpp: integer, bBpp: integer, aBpp: integer)
+---@field flipVertical fun(self: rl.Image)
+---@field flipHorizontal fun(self: rl.Image)
+--- Rotate image by input angle in degrees (-359 to 359).
+---@field rotate fun(self: rl.Image, degrees: integer)
+---@field rotateCW fun(self: rl.Image)
+---@field rotateCCW fun(self: rl.Image)
+---@field colorTint fun(self: rl.Image, color: rl.Color)
+---@field colorInvert fun(self: rl.Image)
+---@field colorGrayscale fun(self: rl.Image)
+--- Modify image color: contrast (-100 to 100).
+---@field colorContrast fun(self: rl.Image, contrast: integer)
+--- Modify image color: brightness (-255 to 255).
+---@field colorBrightness fun(self: rl.Image, brightness: integer)
+---@field colorReplace fun(self: rl.Image, color: rl.Color, replace: rl.Color)
+---@field loadColors fun(self: rl.Image): rl.Color[]?
+---@field loadPalette fun(self: rl.Image, maxPaletteSize: integer): rl.Color[]?
+--- Get image alpha border rectangle.
+--- threshold: alpha threshold
+---@field getAlphaBorder fun(self: rl.Image, threshold: number): rl.Rectangle
+---@field getColor fun(self: rl.Image, x: integer, y: integer): rl.Color
+---@field clearBackground fun(self: rl.Image, color: rl.Color)
+---@field drawPixel fun(self: rl.Image, posX: integer, posY: integer, color: rl.Color)
+---@field drawPixelV fun(self: rl.Image, position: rl.Vector2, color: rl.Color)
+---@field drawLine fun(self: rl.Image, startPosX: integer, startPosY: integer, endPosX: integer, endPosY: integer, color: rl.Color)
+---@field drawLineV fun(self: rl.Image, start: rl.Vector2, end: rl.Vector2, color: rl.Color)
+---@field drawLineEx fun(self: rl.Image, start: rl.Vector2, end: rl.Vector2, thick: integer, color: rl.Color)
+---@field drawLineStrip fun(self: rl.Image, points: rl.Vector2[], color: rl.Color)
+---@field drawTriangle fun(self: rl.Image, v1: rl.Vector2, v2: rl.Vector2, v3: rl.Vector2, color: rl.Color)
+---@field drawTriangleGradient fun(self: rl.Image, v1: rl.Vector2, v2: rl.Vector2, v3: rl.Vector2, c1: rl.Color, c2: rl.Color, c3: rl.Color)
+---@field drawTriangleLines fun(self: rl.Image, v1: rl.Vector2, v2: rl.Vector2, v3: rl.Vector2, color: rl.Color)
+---@field drawTriangleFan fun(self: rl.Image, points: rl.Vector2[], color: rl.Color)
+---@field drawTriangleStrip fun(self: rl.Image, points: rl.Vector2[], color: rl.Color)
+---@field drawRectangle fun(self: rl.Image, posX: integer, posY: integer, width: integer, height: integer, color: rl.Color)
+---@field drawRectangleV fun(self: rl.Image, position: rl.Vector2, size: rl.Vector2, color: rl.Color)
+---@field drawRectangleRec fun(self: rl.Image, rec: rl.Rectangle, color: rl.Color)
+---@field drawRectanglePro fun(self: rl.Image, rec: rl.Rectangle, origin: rl.Vector2, rotation: number, color: rl.Color)
+---@field drawRectangleLines fun(self: rl.Image, posX: integer, posY: integer, width: integer, height: integer, color: rl.Color)
+---@field drawRectangleLinesEx fun(self: rl.Image, rec: rl.Rectangle, thick: integer, color: rl.Color)
+--- Draw rectangle with gradient colors within an image, counter-clockwise color order.
+---@field drawRectangleGradientEx fun(self: rl.Image, rec: rl.Rectangle, col1: rl.Color, col2: rl.Color, col3: rl.Color, col4: rl.Color)
+---@field drawCircle fun(self: rl.Image, centerX: integer, centerY: integer, radius: integer, color: rl.Color)
+---@field drawCircleV fun(self: rl.Image, center: rl.Vector2, radius: integer, color: rl.Color)
+---@field drawCircleLines fun(self: rl.Image, centerX: integer, centerY: integer, radius: integer, color: rl.Color)
+---@field drawCircleLinesV fun(self: rl.Image, center: rl.Vector2, radius: integer, color: rl.Color)
+---@field drawCircleGradient fun(self: rl.Image, center: rl.Vector2, radius: number, inner: rl.Color, outer: rl.Color)
+---@field drawImage fun(self: rl.Image, src: rl.Image, posX: integer, posY: integer, tint: rl.Color)
+---@field drawImageEx fun(self: rl.Image, src: rl.Image, position: rl.Vector2, rotation: number, scale: number, tint: rl.Color)
+---@field drawImageRec fun(self: rl.Image, src: rl.Image, srcRec: rl.Rectangle, position: rl.Vector2, tint: rl.Color)
+---@field drawImagePro fun(self: rl.Image, src: rl.Image, srcRec: rl.Rectangle, dstRec: rl.Rectangle, origin: rl.Vector2, rotation: number, tint: rl.Color)
+--- Draw text (using default font) within an image (destination).
+--- Errors if the default font is unavailable.
+---@field drawText fun(self: rl.Image, text: string, posX: integer, posY: integer, fontSize: integer, color: rl.Color)
+---@field drawTextEx fun(self: rl.Image, font: rl.Font, text: string, position: rl.Vector2, fontSize: number, spacing: number, tint: rl.Color)
+---@field drawTextPro fun(self: rl.Image, font: rl.Font, text: string, position: rl.Vector2, origin: rl.Vector2, rotation: number, fontSize: number, spacing: number, tint: rl.Color)
+
+--- Texture, tex data stored in GPU memory (VRAM)
+---@class rl.Texture
+---@field id integer # OpenGL texture id
+---@field width integer # Texture base width
+---@field height integer # Texture base height
+---@field mipmaps integer # Mipmap levels, 1 by default
+---@field format integer # Data format (PixelFormat type)
+---@field unload fun(self: rl.Texture)
+--- Derived from IsTextureValid
+---@field isValid fun(self: rl.Texture): boolean
+--- Derived from UpdateTexture
+---@field update fun(self: rl.Texture, pixels: string)
+--- Derived from UpdateTextureRec
+---@field updateRec fun(self: rl.Texture, rec: rl.Rectangle, pixels: string)
+--- Derived from GenTextureMipmaps
+---@field genMipmaps fun(self: rl.Texture)
+--- Derived from SetTextureFilter
+---@field setFilter fun(self: rl.Texture, filter: integer)
+--- Derived from SetTextureWrap
+---@field setWrap fun(self: rl.Texture, wrap: integer)
+--- Draw a Texture2D.
+--- Derived from DrawTexture
+---@field draw fun(self: rl.Texture, posX: integer, posY: integer, tint: rl.Color)
+--- Draw a Texture2D with position defined as Vector2.
+--- Derived from DrawTextureV
+---@field drawV fun(self: rl.Texture, position: rl.Vector2, tint: rl.Color)
+--- Draw a Texture2D with rotation and scale.
+--- Derived from DrawTextureEx
+---@field drawEx fun(self: rl.Texture, position: rl.Vector2, rotation: number, scale: number, tint: rl.Color)
+--- Draw a part of a texture defined by a rectangle.
+--- Derived from DrawTextureRec
+---@field drawRec fun(self: rl.Texture, rec: rl.Rectangle, position: rl.Vector2, tint: rl.Color)
+--- Draw a part of a texture defined by a source rectangle to destination rectangle, with scaling and rotation.
+--- Derived from DrawTexturePro
+---@field drawPro fun(self: rl.Texture, srcRec: rl.Rectangle, dstRec: rl.Rectangle, origin: rl.Vector2, rotation: number, tint: rl.Color)
+--- Draw a texture (or part of it) that stretches or shrinks nicely.
+--- Derived from DrawTextureNPatch
+---@field drawNPatch fun(self: rl.Texture, nPatchInfo: rl.NPatchInfo, dstRec: rl.Rectangle, origin: rl.Vector2, rotation: number, tint: rl.Color)
+
+--- RenderTexture, framebuffer and texture attachments
+---@class rl.RenderTexture
+---@field id integer # OpenGL framebuffer id
+---@field texture rl.Texture # Color attachment, borrowed
+---@field depth rl.Texture # Depth attachment, borrowed
+---@field unload fun(self: rl.RenderTexture)
+--- Check if render texture is valid (loaded in GPU).
+--- Derived from IsRenderTextureValid
+---@field isValid fun(self: rl.RenderTexture): boolean
+
+--- NPatchInfo, n-patch layout info
+---@class rl.NPatchInfo
+---@field source rl.Rectangle # Texture source rectangle
+---@field left integer # Left border offset
+---@field top integer # Top border offset
+---@field right integer # Right border offset
+---@field bottom integer # Bottom border offset
+---@field layout integer # Layout of the n-patch: 3x3, 1x3 or 3x1
+
+--- Font, font texture and GlyphInfo array data
+---@class rl.Font
+---@field baseSize integer # Base size (default chars height)
+---@field glyphCount integer # Number of glyphs
+---@field glyphPadding integer # Glyph padding
+---@field unload fun(self: rl.Font)
+--- Derived from IsFontValid
+---@field isValid fun(self: rl.Font): boolean
+--- Derived from ExportFontAsCode
+---@field exportAsCode fun(self: rl.Font, fileName: string): boolean
+--- Derived from DrawTextEx
+---@field drawTextEx fun(self: rl.Font, text: string, position: rl.Vector2, fontSize: number, spacing: number, tint: rl.Color)
+--- Derived from DrawTextPro
+---@field drawTextPro fun(self: rl.Font, text: string, position: rl.Vector2, origin: rl.Vector2, rotation: number, fontSize: number, spacing: number, tint: rl.Color)
+--- Derived from DrawTextCodepoint
+---@field drawTextCodepoint fun(self: rl.Font, codepoint: integer, position: rl.Vector2, fontSize: number, tint: rl.Color)
+--- Derived from DrawTextCodepoints
+---@field drawTextCodepoints fun(self: rl.Font, codepoints: integer[], position: rl.Vector2, fontSize: number, spacing: number, tint: rl.Color)
+--- Derived from MeasureTextEx
+---@field measureTextEx fun(self: rl.Font, text: string, fontSize: number, spacing: number): rl.Vector2
+--- Derived from MeasureTextCodepoints
+---@field measureTextCodepoints fun(self: rl.Font, codepoints: integer[], fontSize: number, spacing: number): rl.Vector2
+--- Derived from GetGlyphIndex
+---@field getGlyphIndex fun(self: rl.Font, codepoint: integer): integer
+--- Derived from GetGlyphInfo
+---@field getGlyphInfo fun(self: rl.Font, codepoint: integer): rl.GlyphInfo
+--- Derived from GetGlyphAtlasRec
+---@field getGlyphAtlasRec fun(self: rl.Font, codepoint: integer): rl.Rectangle
+
+--- Glyph info for one character
+---@class rl.GlyphInfo
+---@field value integer # Character value (Unicode)
+---@field offsetX integer # Character offset X when drawing
+---@field offsetY integer # Character offset Y when drawing
+---@field advanceX integer # Character advance position X
+
+--- Shader, GPU shader program
+---@class rl.Shader
+---@field id integer # Shader program id
+---@field unload fun(self: rl.Shader)
+--- Check if a shader is valid (loaded on GPU)
+--- Derived from IsShaderValid
+---@field isValid fun(self: rl.Shader): boolean
+--- Get shader uniform location
+--- Derived from GetShaderLocation
+---@field getLocation fun(self: rl.Shader, uniformName: string): integer
+--- Get shader attribute location
+--- Derived from GetShaderLocationAttrib
+---@field getLocationAttrib fun(self: rl.Shader, attribName: string): integer
+--- Set shader uniform value
+--- Derived from SetShaderValue
+---@field setValue fun(self: rl.Shader, locIndex: integer, value: any, uniformType: integer)
+--- Set shader uniform value vector
+--- Derived from SetShaderValueV
+---@field setValueV fun(self: rl.Shader, locIndex: integer, values: any[], uniformType: integer)
+--- Set shader uniform value (matrix 4x4)
+--- Derived from SetShaderValueMatrix
+---@field setValueMatrix fun(self: rl.Shader, locIndex: integer, mat: rl.Matrix)
+--- Set shader uniform value for texture (sampler2d)
+--- Derived from SetShaderValueTexture
+---@field setValueTexture fun(self: rl.Shader, locIndex: integer, texture: rl.Texture)
+
+--- VrDeviceInfo, Head-Mounted-Display device parameters
+---@class rl.VrDeviceInfo
+---@field hResolution integer # Horizontal resolution in pixels
+---@field vResolution integer # Vertical resolution in pixels
+---@field hScreenSize number # Horizontal size in meters
+---@field vScreenSize number # Vertical size in meters
+---@field eyeToScreenDistance number # Distance between eye and display in meters
+---@field lensSeparationDistance number # Lens separation distance in meters
+---@field interpupillaryDistance number # IPD (distance between pupils) in meters
+---@field lensDistortionValues number[] # Lens distortion constant parameters (4 values)
+---@field chromaAbCorrection number[] # Chromatic aberration correction parameters (4 values)
+
+--- VrStereoConfig, VR stereo rendering configuration for simulator
+---@class rl.VrStereoConfig
+---@field unload fun(self: rl.VrStereoConfig)
+
+--- GlyphInfoArray, owned glyph data
+---@class rl.GlyphInfoArray
+---@field count integer # Number of glyphs
+---@field unload fun(self: rl.GlyphInfoArray)
+
+--- Mesh, vertex data and vao/vbo
+---@class rl.Mesh
+---@field vertexCount integer # Number of vertices stored in arrays
+---@field triangleCount integer # Number of triangles stored (indexed or not)
+---@field boneCount integer # Number of bones
+---@field vaoId integer # OpenGL Vertex Array Object id
+---@field unload fun(self: rl.Mesh)
+--- Upload mesh vertex data in GPU and provide VAO/VBO ids
+--- Derived from UploadMesh
+---@field upload fun(self: rl.Mesh, dynamic: boolean)
+--- Update mesh vertex data in GPU for a specific buffer index
+--- Derived from UpdateMeshBuffer
+---@field updateBuffer fun(self: rl.Mesh, index: integer, data: string, offset: integer)
+--- Draw a 3d mesh with material and transform
+--- Derived from DrawMesh
+---@field draw fun(self: rl.Mesh, material: rl.Material, transform: rl.Matrix)
+--- Draw multiple mesh instances with material and different transforms
+--- Derived from DrawMeshInstanced
+---@field drawInstanced fun(self: rl.Mesh, material: rl.Material, transforms: rl.Matrix[])
+--- Compute mesh bounding box limits
+--- Derived from GetMeshBoundingBox
+---@field getBoundingBox fun(self: rl.Mesh): rl.BoundingBox
+--- Compute mesh tangents
+--- Derived from GenMeshTangents
+---@field genTangents fun(self: rl.Mesh)
+--- Export mesh data to file, returns true on success
+--- Derived from ExportMesh
+---@field export fun(self: rl.Mesh, fileName: string): boolean
+--- Export mesh as code file (.h) defining multiple arrays of vertex attributes
+--- Derived from ExportMeshAsCode
+---@field exportAsCode fun(self: rl.Mesh, fileName: string): boolean
+
+--- Model, meshes, materials and animation data
+---@class rl.Model
+---@field meshCount integer # Number of meshes
+---@field materialCount integer # Number of materials
+---@field transform rl.Matrix # Local transform matrix
+---@field unload fun(self: rl.Model)
+--- Check if model is valid (loaded in GPU, VAO/VBOs)
+--- Derived from IsModelValid
+---@field isValid fun(self: rl.Model): boolean
+--- Compute model bounding box limits (considers all meshes)
+--- Derived from GetModelBoundingBox
+---@field getBoundingBox fun(self: rl.Model): rl.BoundingBox
+--- Draw a model (with texture if set)
+--- Derived from DrawModel
+---@field draw fun(self: rl.Model, position: rl.Vector3, scale: number, tint: rl.Color)
+--- Draw a model with custom transform
+--- Derived from DrawModelEx
+---@field drawEx fun(self: rl.Model, position: rl.Vector3, rotationAxis: rl.Vector3, rotationAngle: number, scale: rl.Vector3, tint: rl.Color)
+--- Draw a model wires (with texture if set)
+--- Derived from DrawModelWires
+---@field drawWires fun(self: rl.Model, position: rl.Vector3, scale: number, tint: rl.Color)
+--- Draw a model wires with custom transform
+--- Derived from DrawModelWiresEx
+---@field drawWiresEx fun(self: rl.Model, position: rl.Vector3, rotationAxis: rl.Vector3, rotationAngle: number, scale: rl.Vector3, tint: rl.Color)
+--- Set material for a mesh
+--- Derived from SetModelMeshMaterial
+---@field setMeshMaterial fun(self: rl.Model, meshId: integer, materialId: integer)
+--- Update model animation pose (vertex buffers and bone matrices)
+--- Derived from UpdateModelAnimation
+---@field updateAnimation fun(self: rl.Model, anim: rl.ModelAnimation, frame: number)
+--- Update model animation pose, blending two animations
+--- Derived from UpdateModelAnimationEx
+---@field updateAnimationEx fun(self: rl.Model, animA: rl.ModelAnimation, frameA: number, animB: rl.ModelAnimation, frameB: number, blend: number)
+--- Check model animation skeleton match
+--- Derived from IsModelAnimationValid
+---@field isAnimationValid fun(self: rl.Model, anim: rl.ModelAnimation): boolean
+
+--- Material, includes shader and maps
+---@class rl.Material
+---@field unload fun(self: rl.Material)
+--- Check if material is valid (shader assigned, map textures loaded in GPU)
+--- Derived from IsMaterialValid
+---@field isValid fun(self: rl.Material): boolean
+--- Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
+--- Derived from SetMaterialTexture
+---@field setTexture fun(self: rl.Material, mapType: integer, texture: rl.Texture)
+
+--- Materials, array of materials
+---@class rl.Materials
+---@field count integer # Number of materials
+---@field unload fun(self: rl.Materials)
+---@operator index(integer): rl.Material
+
+--- ModelAnimation, contains a full animation sequence
+---@class rl.ModelAnimation
+---@field name string # Animation name
+---@field boneCount integer # Number of bones (per pose)
+---@field keyframeCount integer # Number of animation key frames
+
+--- ModelAnimations, array of model animations
+---@class rl.ModelAnimations
+---@field count integer # Number of animations
+---@field unload fun(self: rl.ModelAnimations)
+---@operator index(integer): rl.ModelAnimation
+
+--- BoundingBox
+---@class rl.BoundingBox
+---@field min rl.Vector3 # Minimum vertex box-corner
+---@field max rl.Vector3 # Maximum vertex box-corner
+
+--- RayCollision, ray hit information
+---@class rl.RayCollision
+---@field hit boolean # Did the ray hit something?
+---@field distance number # Distance to the nearest hit
+---@field point rl.Vector3 # Point of the nearest hit
+---@field normal rl.Vector3 # Surface normal of hit
+
+--- Wave, audio wave data
+---@class rl.Wave
+---@field frameCount integer # Total number of frames (considering channels)
+---@field sampleRate integer # Frequency (samples per second)
+---@field sampleSize integer # Bit depth (bits per sample): 8, 16, 32 (24 not supported)
+---@field channels integer # Number of channels (1-mono, 2-stereo, ...)
+---@field unload fun(self: rl.Wave)
+--- Check if wave data is valid (data loaded and parameters)
+--- Derived from IsWaveValid
+---@field isValid fun(self: rl.Wave): boolean
+--- Copy a wave to a new wave
+--- Derived from WaveCopy
+---@field copy fun(self: rl.Wave): rl.Wave
+--- Crop a wave to defined frames range
+--- Derived from WaveCrop
+---@field crop fun(self: rl.Wave, initFrame: integer, finalFrame: integer)
+--- Convert wave data to desired format
+--- Derived from WaveFormat
+---@field format fun(self: rl.Wave, sampleRate: integer, sampleSize: integer, channels: integer)
+--- Export wave data to file, returns true on success
+--- Derived from ExportWave
+---@field export fun(self: rl.Wave, fileName: string): boolean
+--- Export wave sample data to code (.h), returns true on success
+--- Derived from ExportWaveAsCode
+---@field exportAsCode fun(self: rl.Wave, fileName: string): boolean
+--- Load samples data from wave as a 32bit float data array
+--- Derived from LoadWaveSamples
+---@field loadSamples fun(self: rl.Wave): number[]
+
+--- Sound
+---@class rl.Sound
+---@field frameCount integer # Total number of frames (considering channels)
+---@field sampleRate integer # Frequency (samples per second)
+---@field sampleSize integer # Bit depth (bits per sample): 8, 16, 32 (24 not supported)
+---@field channels integer # Number of channels (1-mono, 2-stereo, ...)
+---@field unload fun(self: rl.Sound)
+--- Check if sound is valid (data loaded and buffers initialized)
+--- Derived from IsSoundValid
+---@field isValid fun(self: rl.Sound): boolean
+--- Update sound buffer with new data (default data format: 32 bit float, stereo)
+--- Derived from UpdateSound
+---@field update fun(self: rl.Sound, data: string, frameCount: integer)
+--- Play a sound
+--- Derived from PlaySound
+---@field play fun(self: rl.Sound)
+--- Stop playing a sound
+--- Derived from StopSound
+---@field stop fun(self: rl.Sound)
+--- Pause a sound
+--- Derived from PauseSound
+---@field pause fun(self: rl.Sound)
+--- Resume a paused sound
+--- Derived from ResumeSound
+---@field resume fun(self: rl.Sound)
+--- Check if sound is currently playing
+--- Derived from IsSoundPlaying
+---@field isPlaying fun(self: rl.Sound): boolean
+--- Set volume for a sound (1.0 is max level)
+--- Derived from SetSoundVolume
+---@field setVolume fun(self: rl.Sound, volume: number)
+--- Set pitch for a sound (1.0 is base level)
+--- Derived from SetSoundPitch
+---@field setPitch fun(self: rl.Sound, pitch: number)
+--- Set pan for a sound (-1.0 left, 0.0 center, 1.0 right)
+--- Derived from SetSoundPan
+---@field setPan fun(self: rl.Sound, pan: number)
+
+--- Music, audio stream, anything longer than ~10 seconds should be streamed
+---@class rl.Music
+---@field frameCount integer # Total number of frames (considering channels)
+---@field sampleRate integer # Frequency (samples per second)
+---@field channels integer # Number of channels (1-mono, 2-stereo, ...)
+---@field looping boolean # Music looping enable
+---@field unload fun(self: rl.Music)
+--- Check if music stream is valid (context and buffers initialized)
+--- Derived from IsMusicValid
+---@field isValid fun(self: rl.Music): boolean
+--- Start music playing
+--- Derived from PlayMusicStream
+---@field playStream fun(self: rl.Music)
+--- Check if music is playing
+--- Derived from IsMusicStreamPlaying
+---@field isStreamPlaying fun(self: rl.Music): boolean
+--- Update buffers for music streaming
+--- Derived from UpdateMusicStream
+---@field updateStream fun(self: rl.Music)
+--- Stop music playing
+--- Derived from StopMusicStream
+---@field stopStream fun(self: rl.Music)
+--- Pause music playing
+--- Derived from PauseMusicStream
+---@field pauseStream fun(self: rl.Music)
+--- Resume playing paused music
+--- Derived from ResumeMusicStream
+---@field resumeStream fun(self: rl.Music)
+--- Seek music to a position (in seconds)
+--- Derived from SeekMusicStream
+---@field seekStream fun(self: rl.Music, position: number)
+--- Set volume for music (1.0 is max level)
+--- Derived from SetMusicVolume
+---@field setVolume fun(self: rl.Music, volume: number)
+--- Set pitch for music (1.0 is base level)
+--- Derived from SetMusicPitch
+---@field setPitch fun(self: rl.Music, pitch: number)
+--- Set pan for music (-1.0 left, 0.0 center, 1.0 right)
+--- Derived from SetMusicPan
+---@field setPan fun(self: rl.Music, pan: number)
+--- Get music time length (in seconds)
+--- Derived from GetMusicTimeLength
+---@field getTimeLength fun(self: rl.Music): number
+--- Get current music time played (in seconds)
+--- Derived from GetMusicTimePlayed
+---@field getTimePlayed fun(self: rl.Music): number
+
+--- AudioStream, custom audio stream
+---@class rl.AudioStream
+---@field sampleRate integer # Frequency (samples per second)
+---@field sampleSize integer # Bit depth (bits per sample): 8, 16, 32 (24 not supported)
+---@field channels integer # Number of channels (1-mono, 2-stereo, ...)
+---@field unload fun(self: rl.AudioStream)
+--- Check if an audio stream is valid (buffers initialized)
+--- Derived from IsAudioStreamValid
+---@field isValid fun(self: rl.AudioStream): boolean
+--- Update audio stream buffers with data
+--- Derived from UpdateAudioStream
+---@field update fun(self: rl.AudioStream, data: string, frameCount: integer)
+--- Check if any audio stream buffers requires refill
+--- Derived from IsAudioStreamProcessed
+---@field isProcessed fun(self: rl.AudioStream): boolean
+--- Play audio stream
+--- Derived from PlayAudioStream
+---@field play fun(self: rl.AudioStream)
+--- Pause audio stream
+--- Derived from PauseAudioStream
+---@field pause fun(self: rl.AudioStream)
+--- Resume audio stream
+--- Derived from ResumeAudioStream
+---@field resume fun(self: rl.AudioStream)
+--- Check if audio stream is playing
+--- Derived from IsAudioStreamPlaying
+---@field isPlaying fun(self: rl.AudioStream): boolean
+--- Stop audio stream
+--- Derived from StopAudioStream
+---@field stop fun(self: rl.AudioStream)
+--- Set volume for audio stream (1.0 is max level)
+--- Derived from SetAudioStreamVolume
+---@field setVolume fun(self: rl.AudioStream, volume: number)
+--- Set pitch for audio stream (1.0 is base level)
+--- Derived from SetAudioStreamPitch
+---@field setPitch fun(self: rl.AudioStream, pitch: number)
+--- Set pan for audio stream (-1.0 left, 0.0 center, 1.0 right)
+--- Derived from SetAudioStreamPan
+---@field setPan fun(self: rl.AudioStream, pan: number)
+--- Set audio stream callback: called on the audio thread to fill a buffer. Return raw sample bytes; must not call raylib.
+--- Derived from SetAudioStreamCallback
+---@field setCallback fun(self: rl.AudioStream, callback?: fun(frames: integer): string)
+--- Attach audio stream processor: receives interleaved stereo float samples as a string, returns processed bytes; must not call raylib.
+--- Derived from AttachAudioStreamProcessor
+---@field attachProcessor fun(self: rl.AudioStream, callback: fun(data: string, frames: integer): string)
+--- Detach audio stream processor
+--- Derived from DetachAudioStreamProcessor
+---@field detachProcessor fun(self: rl.AudioStream, callback: fun(data: string, frames: integer): string)
+
+--- AutomationEvent
+---@class rl.AutomationEvent
+---@field frame integer # Event frame
+---@field type integer # Event type (AutomationEventType)
+---@field params integer[] # Event parameters (4 values)
+
+--- AutomationEventList
+---@class rl.AutomationEventList
+---@field capacity integer # Events max entries (MAX_AUTOMATION_EVENTS)
+---@field count integer # Events entries count
+---@field unload fun(self: rl.AutomationEventList)
+
+--- Export automation events list as text file
+--- Derived from ExportAutomationEventList
+---@field export fun(self: rl.AutomationEventList, fileName: string): boolean
